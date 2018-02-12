@@ -46,12 +46,24 @@
         $.ajax({
             url: url,
             method: 'GET',
-        }).done(function(result) {
+        }).done(function(response) {
+            
+            //fix the end
+            $("results").append("<p>Your search for <strong>" + $("query").val() + "</strong> returned " + response.num_results);
+            
+            $.each(response.results, function( i, v ) {
+                
+                $("#results").append(v.display_title + " opens on " + v.opening_date + "<br>");
+                
+            });
+            
             console.log(result);
         }).fail(function(err) {
             throw err;
         });
         }
+        
+        $("#btnSearch").on("click", doSearch);
     </script>
     
 
