@@ -35,6 +35,8 @@
     
     
     <script>
+    
+        function doSearch() {
         // Built by LucyBot. www.lucybot.com
         var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
         url += '?' + $.param({
@@ -49,6 +51,7 @@
         }).fail(function(err) {
             throw err;
         });
+        }
     </script>
     
 
