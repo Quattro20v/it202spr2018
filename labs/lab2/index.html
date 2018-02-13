@@ -8,10 +8,13 @@
       
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       
-    <!-- Required meta tags -->
- <!--   <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
--->
+  <style>
+      
+      .screen {
+          display: none;
+      }
+      
+  </style>
 
     <title>Hello, world!</title>
   </head>
@@ -19,11 +22,25 @@
       
       
     <div class="container" id ="home"></div>
-    <div class="container" id ="search">
-        <input type="text" id="query" name="fname">
-        <button type="button" id="btnSearch">Search</button>
+        <div class="container" id ="search">
+            <input type="text" id="query" name="fname">
+            <button type="button" id="btnSearch">Search</button>
+        </div>
+        <div class="container" id ="results">
+            <div class="card" id="template">
+  <div class="card-header">
+    Featured
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
     </div>
-    <div class="container" id ="results"></div>
+        
+        
+    </div>
     
     <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -35,7 +52,9 @@
     
     
     <script>
-    
+        $("#template").hide();
+        
+        
         function doSearch() {
         // Built by LucyBot. www.lucybot.com
         var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
@@ -43,6 +62,7 @@
             'api-key': "18d88b77d59348ddafc7edd100a793b2",
             'query': $("#query").val()
         });
+        
         $.ajax({
             url: url,
             method: 'GET',
@@ -53,8 +73,11 @@
             
             $.each(response.results, function( i, v ) {
                 
-                $("#results").append(v.display_title + " opens on " + v.opening_date + "<br>");
-                
+                var template = $('#template').clone();
+                $("h5",template).text(v.display_title);
+                $("p",template).text("Opens on: " + v.opening_date);
+                $('#results').append(template);
+                $(template).show()
             });
             
             console.log(result);
