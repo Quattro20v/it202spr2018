@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        body {
+            background: url(background.jpeg) no-repeat center fixed; 
+            background-size: cover;
+        }
+        .informationBox {
+            width: 450px;
+            height: 250px;
+            background-color: white;
+            border-radius: 25px;
+            opacity: 0.5;
+        
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        
+            margin: auto;
+            box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        }
+    </style>
+    
+    
+    <head>
+        <title>Material Components for the web</title>
+        <link rel="stylesheet"
+          href="node_modules/material-components-web/dist/material-components-web.css">
+        
+        <title> </title>
+    </head>
+    <body class="mdc-typography">
+        
+    <div class="informationBox">\
+    Helloooo
+        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+          <input type="text" class="mdc-text-field__input" id="demo-input">
+          <label for="demo-input" class="mdc-text-field__label">Tell us how you feel!</label>
+        </div>
+    </div>    
+        
+        
+    <h2 class="mdc-typography--display2">Hello, Material Components!</h2>
+    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+      <input type="text" class="mdc-text-field__input" id="demo-input">
+      <label for="demo-input" class="mdc-text-field__label">Tell us how you feel!</label>
+    </div>
+    
+    <script src="node_modules/material-components-web/dist/material-components-web.js"></script>
+    <script>mdc.autoInit()</script>
+  </body>
+</html>
