@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html>
     <style>
+    
         body {
-            background: url(background.jpeg) no-repeat center fixed; 
-            background-size: cover;
+          width: 100%;
+          height: 100vh;
+          margin: 0px;
+        }
+        .page1 {
+              background: #111;
+              height: 100%;
+              width: 100%;
+              background: url(background.jpeg) no-repeat center fixed; 
+                background-size: cover;
+        }
+        .page2 {
+              background: #111;
+              height: 100%;
+              width: 100%;
+              background: url(background.jpeg) no-repeat center fixed; 
+                background-size: cover;
         }
         .informationBox {
             width: 450px;
             height: 250px;
-            background-color: white;
+            background-color:rgba(255,255,255,.6);
             border-radius: 25px;
-            opacity: 0.5;
+ /*           border:2px solid black;*/
         
             position: absolute;
             top:0;
@@ -20,6 +36,47 @@
         
             margin: auto;
             box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        }
+        .informationBox > h2 {
+            text-align:center
+        }
+        .informationBox > p {
+            color : black;
+            padding: 10px;
+        }
+        .informationBox > button {
+            float: right;
+            margin-right:15px;
+        }
+        .informationBox2 {
+            width: 450px;
+            height: 250px;
+            background-color:rgba(255,255,255,.6);
+            border-radius: 25px;
+ /*           border:2px solid black;*/
+        
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        
+            margin: auto;
+            box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        }
+        .informationBox2 > h2 {
+            text-align:center
+        }
+        .informationBox2 > p {
+            color : black;
+            padding: 10px;
+        }
+        .informationBox2 > button {
+            float: right;
+            margin-right:15px;
+        }
+        #map {
+            height: 100%;
         }
     </style>
     
@@ -32,23 +89,142 @@
         <title> </title>
     </head>
     <body class="mdc-typography">
-        
-    <div class="informationBox">\
-    Helloooo
-        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-          <input type="text" class="mdc-text-field__input" id="demo-input">
-          <label for="demo-input" class="mdc-text-field__label">Tell us how you feel!</label>
+    <div class="page1"></div>    
+        <div class="informationBox" >
+            <h2 class="mdc-typography--title">
+              Welcome, user!
+            </h2>
+            <p class="mdc-typography--body1">Welcome, you have arrived at the webpage to search for schools by school type in the City of Chicago.
+                In the next page, please select the school types that you want to have displayed on a map. Please press
+                "Next" when you are ready.
+            </p>
+            <button class="nextButton mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                  Next
+            </button>
         </div>
-    </div>    
-        
-        
-    <h2 class="mdc-typography--display2">Hello, Material Components!</h2>
-    <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-      <input type="text" class="mdc-text-field__input" id="demo-input">
-      <label for="demo-input" class="mdc-text-field__label">Tell us how you feel!</label>
     </div>
+    <div class="page2"></div>    
+        <div class="informationBox2" >
+            <h2 class="mdc-typography--title">
+              School Type Selection
+            </h2>
+            <p class="mdc-typography--body1">Please select the school types that you want to have displayed and press display
+            </p>
+            <div id="demo-menu" class="mdc-menu-anchor">
+              <button id="menu-button">Select School Type</button>
+              <div class="mdc-menu">
+                  <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
+                    <li class="mdc-list-item" role="menuitem" tabindex="0">
+                      <li><input type="checkbox" />Career Academy </li>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem" tabindex="-1" aria-disabled="true">
+                      <li><input type="checkbox" />Charter </li>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem" tabindex="-2" aria-disabled="true">
+                      <li><input type="checkbox" />Citywide-option </li>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem" tabindex="-3" aria-disabled="true">
+                      <li><input type="checkbox" />Classical </li>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem" tabindex="-4" aria-disabled="true">
+                      <li><input type="checkbox" />Contract </li>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem" tabindex="-5" aria-disabled="true">
+                      <li><input type="checkbox" />Magnet </li>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem" tabindex="-6" aria-disabled="true">
+                      <li><input type="checkbox" />Military Academy </li>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem" tabindex="-7" aria-disabled="true">
+                      <li><input type="checkbox" />Neighborhood </li>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem" tabindex="-8" aria-disabled="true">
+                      <li><input type="checkbox" />Regional gifted center </li>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem" tabindex="-9" aria-disabled="true">
+                      <li><input type="checkbox" />Selective enrollment </li>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem" tabindex="-10" aria-disabled="true">
+                      <li><input type="checkbox" />Small </li>
+                    </li>
+                    <li class="mdc-list-item" role="menuitem" tabindex="-11" aria-disabled="true">
+                      <li><input type="checkbox" />Special education </li>
+                    </li>
+                  </ul>
+              </div>
+            </div>
+            <button class="nextButton mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                  Next
+            </button>
+        </div>
+    </div>
+    <div id="map"></div>
+    
+    <script>
+        function initMap() {
+ //       var uluru = {lat: -41.8782, lng: -87.6290};
+        var mymap = new google.maps.Map(document.getElementById('map'), {
+              zoom: 10,
+              center: {lat: 41.866127, lng: -87.652351}
+            });
+        }    
+    </script>
     
     <script src="node_modules/material-components-web/dist/material-components-web.js"></script>
+    
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>
+    <script>
+        $(".page1").hide();
+        $(".informationBox").hide();
+        $(".page2").hide();
+        $(".informationBox2").hide();  
+        $(document).ready(function(){
+            $('.nextButton').on('click', function(event) {        
+                $(".page1").hide();
+                $(".informationBox").hide();
+                $(".page2").show();
+                $(".informationBox2").show();
+        //        $(".page1").toggle("slideUp");
+            });
+            // Instantiation
+        });
+        
+        
+        
+        
+  /*      var menuEl = document.querySelector('#demo-menu');
+        var menu = new mdc.menu.MDCMenu(menuEl);
+        var menuButtonEl = document.querySelector('#menu-button');
+        
+        // Toggle menu open
+        menuButtonEl.addEventListener('click', function() {
+        menu.open = !menu.open;
+        });
+        
+        // Listen for selected item
+        menuEl.addEventListener('MDCMenu:selected', function(evt) {
+         var detail = evt.detail;
+        });
+        
+        // Set Anchor Corner to Bottom End
+        menu.setAnchorCorner(Corner.BOTTOM_END);
+        
+        // Turn off menu open animations
+        menu.quickOpen = true;*/
+        
+        
+        
+    </script>
+    
+    <!-- Google maps stuff -->
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3nBtj6l277a5DtzpcTHIMpBMdCPVxNL0&callback=initMap">
+    </script>
+    
     <script>mdc.autoInit()</script>
   </body>
 </html>
