@@ -181,6 +181,45 @@
     </header>
     
     <body class="mdc-typography">
+        <aside class="mdc-drawer mdc-drawer--temporary demo-drawer" style="">
+            <nav class="mdc-drawer__drawer">
+                <header class="mdc-drawer__header">
+                    <div class="mdc-drawer__header-content mdc-theme--text-primary-on-primary mdc-theme--primary-bg">
+                    Header here
+                    </div>
+                </header>
+            <nav class="mdc-drawer__content mdc-list-group">
+            <div id="icon-with-text-demo" class="mdc-list">
+            <a class="mdc-list-item mdc-list-item--selected demo-drawer-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>Inbox
+            </a>
+            <a class="mdc-list-item demo-drawer-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">star</i>Star
+            </a>
+            <a class="mdc-list-item demo-drawer-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>Sent Mail
+            </a>
+            <a class="mdc-list-item demo-drawer-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>Drafts
+            </a>
+            </div>
+            
+            <hr class="mdc-list-divider">
+            
+            <div class="mdc-list">
+            <a class="mdc-list-item demo-drawer-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">email</i>All Mail
+            </a>
+            <a class="mdc-list-item demo-drawer-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">delete</i>Trash
+            </a>
+            <a class="mdc-list-item demo-drawer-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
+              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">report</i>Spam
+            </a>
+            </div>
+            </nav>
+      </nav>
+    </aside>
     <div class="page1">   
         <div class="informationBox" >
             <h2 class="mdc-typography--title">
@@ -316,6 +355,11 @@
                 $(".page2").show();
                 $(".informationBox2").show();
                 $("#the-toolbar").hide();
+            });
+            
+            $('#drawerButton').on('click', function(event) {        
+                
+                
             });
             
             
@@ -860,6 +904,41 @@
         anchor.style.setProperty('top', '0');
         anchor.style.setProperty('left', '0');
       });
+      
+      
+      
+      $(document).ready(function(){
+        var drawerEl = document.querySelector('.mdc-drawer');
+        var MDCTemporaryDrawer = mdc.drawer.MDCTemporaryDrawer;
+        var drawer = new MDCTemporaryDrawer(drawerEl);
+        document.querySelector('#drawerButton').addEventListener('click', function() {
+          drawer.open = true;
+        });
+        drawerEl.addEventListener('MDCTemporaryDrawer:open', function() {
+          console.log('Received MDCTemporaryDrawer:open');
+        });
+        drawerEl.addEventListener('MDCTemporaryDrawer:close', function() {
+          console.log('Received MDCTemporaryDrawer:close');
+        });
+
+        // Demonstrate application of --activated modifier to drawer menu items
+        var activatedClass = 'mdc-list-item--selected';
+        document.querySelector('.mdc-drawer__drawer').addEventListener('click', function(event) {
+          var el = event.target;
+          while (el && !el.classList.contains('mdc-list-item')) {
+            el = el.parentElement;
+          }
+          if (el) {
+            var activatedItem = document.querySelector('.' + activatedClass);
+            if (activatedItem) {
+              activatedItem.classList.remove(activatedClass);
+            }
+            event.target.classList.add(activatedClass);
+          }
+        });
+
+      });
+    
 
         
         
