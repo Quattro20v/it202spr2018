@@ -192,7 +192,7 @@
                     </div>
                 </header>
             <nav class="mdc-drawer__content mdc-list-group">
-            <div id="icon-with-text-demo" class="mdc-list">
+            <div id="listOfSchools" class="mdc-list">
             </div>
             </nav>
       </nav>
@@ -283,7 +283,17 @@
     <script src="node_modules/material-components-web/dist/material-components-web.js"></script>
     
     <script>
+         function DeleteMarkers() {
+        //Loop through all the markers and remove
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
+        }
+        markers = [];
+        };    
+    
+    
         var mymap;
+        var markers = [];
         function initMap() {
             var uluru = {lat: 41.866127, lng: -87.652351};
             mymap = new google.maps.Map(document.getElementById('map'), {
@@ -315,6 +325,8 @@
                 $(".page2").show();
                 $(".informationBox2").show();
                 $("#the-toolbar").hide();
+                $("#listOfSchools").html("");
+                DeleteMarkers();
             });
             
             $('#drawerButton').on('click', function(event) {        
@@ -373,13 +385,14 @@
                               title: v.long_name,
                               icon: image
                             });
+                            markers.push(mymarker);
                             
                             console.log(v);
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
-                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
-                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
+                            $( "#listOfSchools" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#listOfSchools" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -414,13 +427,14 @@
                               title: v.long_name,
                               icon: image
                             });
+                            markers.push(mymarker);
                             
                             console.log(v);
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
-                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
-                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
+                            $( "#listOfSchools" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#listOfSchools" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -455,13 +469,14 @@
                               title: v.long_name,
                               icon: image
                             });
+                            markers.push(mymarker);
                             
                             console.log(v);
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
-                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
-                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
+                            $( "#listOfSchools" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#listOfSchools" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -496,13 +511,14 @@
                               title: v.long_name,
                               icon: image
                             });
+                            markers.push(mymarker);
                             
                             console.log(v);
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
-                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
-                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
+                            $( "#listOfSchools" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#listOfSchools" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -537,13 +553,14 @@
                               title: v.long_name,
                               icon: image
                             });
+                            markers.push(mymarker);
                             
                             console.log(v);
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
-                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
-                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
+                            $( "#listOfSchools" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#listOfSchools" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -578,13 +595,14 @@
                               title: v.long_name,
                               icon: image
                             });
+                            markers.push(mymarker);
                             
                             console.log(v);
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
-                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
-                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
+                            $( "#listOfSchools" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#listOfSchools" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -619,13 +637,14 @@
                               title: v.long_name,
                               icon: image
                             });
+                            markers.push(mymarker);
                             
                             console.log(v);
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
-                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
-                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
+                            $( "#listOfSchools" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#listOfSchools" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -660,13 +679,14 @@
                               title: v.long_name,
                               icon: image
                             });
+                            markers.push(mymarker);
                             
                             console.log(v);
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
-                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
-                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
+                            $( "#listOfSchools" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#listOfSchools" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -701,13 +721,14 @@
                               title: v.long_name,
                               icon: image
                             });
+                            markers.push(mymarker);
                             
                             console.log(v);
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
-                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
-                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
+                            $( "#listOfSchools" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#listOfSchools" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -742,13 +763,14 @@
                               title: v.long_name,
                               icon: image
                             });
+                            markers.push(mymarker);
                             
                             console.log(v);
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
-                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
-                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
+                            $( "#listOfSchools" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#listOfSchools" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -783,13 +805,14 @@
                               title: v.long_name,
                               icon: image
                             });
+                            markers.push(mymarker);
                             
                             console.log(v);
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
-                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
-                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
+                            $( "#listOfSchools" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#listOfSchools" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -824,19 +847,19 @@
                               title: v.long_name,
                               icon: image
                             });
+                            markers.push(mymarker);
                             
                             console.log(v);
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
-                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
-                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
+                            $( "#listOfSchools" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#listOfSchools" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
             });
         });
-        
         
       $(document).ready(function(){
         var menuEl = document.querySelector('#demo-menu');
