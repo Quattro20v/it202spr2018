@@ -167,13 +167,15 @@
     <header class="mdc-toolbar" id="the-toolbar">
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-          <a href="#" class="material-icons mdc-toolbar__menu-icon">menu</a>
-          <span class="mdc-toolbar__title">Map of School in Chicago</span>
+          <button id="drawerButton" class=" material-icons mdc-toolbar__menu-icon mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                  menu
+            </button>
+          <span class="mdc-toolbar__title">Map of Schools in Chicago</span>
         </section>
         <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
-          <a href="#" class="material-icons mdc-toolbar__icon" aria-label="Download" alt="Download">file_download</a>
-          <a href="#" class="material-icons mdc-toolbar__icon" aria-label="Print this page" alt="Print this page">print</a>
-          <a href="#" class="material-icons mdc-toolbar__icon" aria-label="Bookmark this page" alt="Bookmark this page">bookmark</a>
+           <button id="backButton" class=" material-icons mdc-toolbar__menu-icon mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                  arrow_back
+            </button>
         </section>
       </div>
     </header>
@@ -308,6 +310,14 @@
         //        $(".page1").toggle("slideUp");
             });
             
+            $('#backButton').on('click', function(event) {        
+                $(".page3").hide();
+                $("#map").hide();
+                $(".page2").show();
+                $(".informationBox2").show();
+                $("#the-toolbar").hide();
+            });
+            
             
             const checkbox1 = document.querySelector('input[name="checkbox1"]');
             const checkbox2 = document.querySelector('input[name="checkbox2"]');
@@ -325,6 +335,7 @@
            $('.showMapButton').on('click', function(event) {
                 $(".page2").hide();
                 $(".informationBox2").hide();
+                $(".page3").show();
                 $("#map").show();
                 $("#the-toolbar").show();
                 if (checkbox1.checked) {
