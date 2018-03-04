@@ -74,7 +74,10 @@
         }
         .informationBox2 > p {
             color : black;
-            padding: 10px;
+            padding-top: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+      /*      padding: 10px;*/
         }
         .informationBox2 > button {
             float: right;
@@ -173,7 +176,7 @@
           <span class="mdc-toolbar__title">Map of Schools in Chicago</span>
         </section>
         <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
-           <button id="backButton" class=" material-icons mdc-toolbar__menu-icon mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+           <button id="backButton" class=" material-icons mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
                   arrow_back
             </button>
         </section>
@@ -185,37 +188,11 @@
             <nav class="mdc-drawer__drawer">
                 <header class="mdc-drawer__header">
                     <div class="mdc-drawer__header-content mdc-theme--text-primary-on-primary mdc-theme--primary-bg">
-                    Header here
+                    List of the Schools selected (Click on icons for more info)
                     </div>
                 </header>
             <nav class="mdc-drawer__content mdc-list-group">
             <div id="icon-with-text-demo" class="mdc-list">
-            <a class="mdc-list-item mdc-list-item--selected demo-drawer-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>Inbox
-            </a>
-            <a class="mdc-list-item demo-drawer-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">star</i>Star
-            </a>
-            <a class="mdc-list-item demo-drawer-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>Sent Mail
-            </a>
-            <a class="mdc-list-item demo-drawer-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>Drafts
-            </a>
-            </div>
-            
-            <hr class="mdc-list-divider">
-            
-            <div class="mdc-list">
-            <a class="mdc-list-item demo-drawer-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">email</i>All Mail
-            </a>
-            <a class="mdc-list-item demo-drawer-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">delete</i>Trash
-            </a>
-            <a class="mdc-list-item demo-drawer-list-item" href="#" data-mdc-tabindex-handled="true" tabindex="-1">
-              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">report</i>Spam
-            </a>
             </div>
             </nav>
       </nav>
@@ -239,32 +216,17 @@
             <h2 class="mdc-typography--title">
               School Type Selection
             </h2>
-            <p class="mdc-typography--body1">Please select the school types that you want to have displayed and press display
+            <p class="mdc-typography--body1">Please select the school types that you want to have displayed below and press show map. (Please make sure to press the check, that you want to utilize)
             </p>
-            <div class="mdc-menu-anchor" style="top: 0px; left: 0px;">
-            <button id="menu-button" class="mdc-button mdc-button--raised demo-button demo-button--normal">
-              Show<span class="demo-button__normal-text"> Menu</span><span class="demo-button__long-text"> From Here Now!</span>
+            <div class="mdc-menu-anchor" style="top: 50px; left: 0px;">
+            <button id="menu-button" class="material-icons mdc-button \ demo-button--normal">
+              menu
             </button>
 
             <div class="mdc-menu" style="position: absolute; transform-origin: center top 0px; left: 0px; top: 0px;" tabindex="-1" id="demo-menu">
                 <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
                 <li class="mdc-list-item" role="menuitem" tabindex="0">
                     <input type="checkbox" name="checkbox1"/>Career Academy
-                  <!--  <div class="mdc-checkbox" data-mdc-auto-init="MDCCheckbox">
-                        <input type="checkbox"
-                               id="my-checkbox1"
-                               class="mdc-checkbox__native-control"/>
-                        <div class="mdc-checkbox__background">
-                          <svg class="mdc-checkbox__checkmark"
-                               viewBox="0 0 24 24">
-                            <path class="mdc-checkbox__checkmark-path"
-                                  fill="none"
-                                  stroke="white"
-                                  d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-                          </svg>
-                          <div class="mdc-checkbox__mixedmark"></div>
-                        </div>
-                    </div>Career Academy-->
                 </li>
                 <li class="mdc-list-item" role="menuitem" tabindex="-1">
                     <input type="checkbox" name="checkbox2"/>Charter 
@@ -334,11 +296,9 @@
             }); */ 
         }
     
-        $(".page1").hide();
         $("#the-toolbar").hide();
-        $(".informationBox").hide();
-    //    $(".page2").hide();
-   //     $(".informationBox2").hide();
+        $(".page2").hide();
+        $(".informationBox2").hide();
         $("#map").hide();  
         $(document).ready(function(){
             $('.nextButton').on('click', function(event) {        
@@ -418,6 +378,8 @@
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
+                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
+                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -457,6 +419,8 @@
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
+                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
+                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -496,6 +460,8 @@
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
+                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
+                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -535,6 +501,8 @@
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
+                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
+                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -574,6 +542,8 @@
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
+                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
+                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -613,6 +583,8 @@
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
+                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
+                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -652,6 +624,8 @@
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
+                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
+                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -691,6 +665,8 @@
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
+                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
+                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -730,6 +706,8 @@
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
+                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
+                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -769,6 +747,8 @@
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
+                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
+                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -808,6 +788,8 @@
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
+                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
+                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
@@ -847,37 +829,13 @@
                                 mymarker.addListener('click', function() {
                                 infowindow.open(mymap, mymarker);
                             });
+                            $( ".mdc-list" ).append( '<p>'+ v.long_name +'</p>');
+                            $( ".mdc-list" ).append( '<hr class="mdc-list-divider">');
                         });
                     });
                 }
             });
         });
-   
-
-        
-        
-        
-        
-      /*  var menuEl = document.querySelector('#demo-menu');
-        var menu = new mdc.menu.MDCMenu(menuEl);
-        var menuButtonEl = document.querySelector('#menu-button');
-        
-        // Toggle menu open
-        menuButtonEl.addEventListener('click', function() {
-        menu.open = !menu.open;
-        });
-        
-        // Listen for selected item
-        menuEl.addEventListener('MDCMenu:selected', function(evt) {
-         var detail = evt.detail;
-        });
-        
-        // Set Anchor Corner to Bottom End
-        menu.setAnchorCorner(Corner.BOTTOM_END);
-        
-        // Turn off menu open animations
-        menu.quickOpen = true;*/
-        
         
         
       $(document).ready(function(){
