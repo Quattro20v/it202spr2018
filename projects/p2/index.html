@@ -21,6 +21,11 @@
               background: url(background.jpeg) no-repeat center fixed; 
                 background-size: cover;
         }
+        .page3 {
+              background: #111;
+              height: 100%;
+              width: 100%;
+        }
         .informationBox {
             width: 450px;
             height: 250px;
@@ -155,11 +160,26 @@
         <title>Material Components for the web</title>
         <link rel="stylesheet"
           href="node_modules/material-components-web/dist/material-components-web.css">
-        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <title> </title>
     </head>
+    
+    <header class="mdc-toolbar" id="the-toolbar">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <a href="#" class="material-icons mdc-toolbar__menu-icon">menu</a>
+          <span class="mdc-toolbar__title">Map of School in Chicago</span>
+        </section>
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
+          <a href="#" class="material-icons mdc-toolbar__icon" aria-label="Download" alt="Download">file_download</a>
+          <a href="#" class="material-icons mdc-toolbar__icon" aria-label="Print this page" alt="Print this page">print</a>
+          <a href="#" class="material-icons mdc-toolbar__icon" aria-label="Bookmark this page" alt="Bookmark this page">bookmark</a>
+        </section>
+      </div>
+    </header>
+    
     <body class="mdc-typography">
-    <div class="page1"></div>    
+    <div class="page1">   
         <div class="informationBox" >
             <h2 class="mdc-typography--title">
               Welcome, user!
@@ -173,7 +193,7 @@
             </button>
         </div>
     </div>
-    <div class="page2"></div>    
+    <div class="page2">    
         <div class="informationBox2" >
             <h2 class="mdc-typography--title">
               School Type Selection
@@ -246,7 +266,9 @@
             </button>
         </div>
     </div>
-    <div id="map"></div>
+    <div class="page3">
+        <div id="map"></div>
+    </div>
     
     
     <script
@@ -254,61 +276,7 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous">
     </script>
-    <script>
 
- /*       var mymap;
-        function initMap() {
-            var uluru = {lat: 41.866127, lng: -87.652351};
-            mymap = new google.maps.Map(document.getElementById('map'), {
-              zoom: 10,
-              center: {lat: 41.866127, lng: -87.652351}
-            });*/
-           /* var marker = new google.maps.Marker({
-            position: uluru,
-            map: mymap
-            }); */ 
-//        }
-        
- /*       $.get("https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ('Neighborhood')")
-            .done(function(response) {
-                console.log(response);
-            $.each(response, function(i, v) {
-                var contentString = '<div id="content">'+
-                    '<div id="siteNotice">'+
-                    '</div>'+
-                    v.long_name + '</h1>'+
-                    '<div id="bodyContent">'+
-                    '<p>School administrator: ' +  v.administrator +
-                    '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
-                    '<br />Address: ' + v.address +
-                    '<br />School hours: ' + v.school_hours +
-                    '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
-                    'sandstone rock formation in the southern part of the '+
-                    '(last visited June 22, 2009).</p>'+
-                    '</div>'+
-                    '</div>';
-                console.log(v.school_longitude);
-                console.log(v.long_name);
-                var infowindow = new google.maps.InfoWindow({
-                  content: contentString
-                });
-                
-                var mymarker = new google.maps.Marker({
-                  position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
-                  map: mymap,
-                  title: v.long_name
-                });
-                
-                console.log(v);
-                    mymarker.addListener('click', function() {
-                    infowindow.open(mymap, mymarker);
-                });
-            });
-        });*/
-//    }    
-        
-    </script>
-    
     <script src="node_modules/material-components-web/dist/material-components-web.js"></script>
     
     <script>
@@ -326,10 +294,11 @@
         }
     
         $(".page1").hide();
+        $("#the-toolbar").hide();
         $(".informationBox").hide();
     //    $(".page2").hide();
    //     $(".informationBox2").hide();
-   //     $("#map").show();  
+        $("#map").hide();  
         $(document).ready(function(){
             $('.nextButton').on('click', function(event) {        
                 $(".page1").hide();
@@ -352,17 +321,12 @@
             const checkbox10 = document.querySelector('input[name="checkbox10"]');
             const checkbox11 = document.querySelector('input[name="checkbox11"]');
             const checkbox12 = document.querySelector('input[name="checkbox12"]');
-        /*    if (checkbox1.checked) {
-                $(".page2").show();
-              } else {
-                $(".page2").hide();
-              }*/
-            
             
            $('.showMapButton').on('click', function(event) {
                 $(".page2").hide();
                 $(".informationBox2").hide();
                 $("#map").show();
+                $("#the-toolbar").show();
                 if (checkbox1.checked) {
                     $.get("https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ('Charter')")
                         .done(function(response) {
