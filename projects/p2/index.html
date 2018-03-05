@@ -300,15 +300,12 @@
               zoom: 10,
               center: {lat: 41.866127, lng: -87.652351}
             });
-           /* var marker = new google.maps.Marker({
-            position: uluru,
-            map: mymap
-            }); */ 
         }
     
         $("#the-toolbar").hide();
         $(".page2").hide();
         $(".informationBox2").hide();
+        $(".page3").hide();
         $("#map").hide();  
         $(document).ready(function(){
             $('.nextButton').on('click', function(event) {        
@@ -347,6 +344,7 @@
             const checkbox10 = document.querySelector('input[name="checkbox10"]');
             const checkbox11 = document.querySelector('input[name="checkbox11"]');
             const checkbox12 = document.querySelector('input[name="checkbox12"]');
+
             
            $('.showMapButton').on('click', function(event) {
                 $(".page2").hide();
