@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <canvas id="myCanvas"></canvas>
+    <script>
+      var c=document.getElementById("myCanvas");
+      var ctx=c.getContext("2d");
+      ctx.fillStyle = "blue";
+      
+      var circleX = c.width;
+      
+      var game = {livesLeft: 3, score: 0};
+      var harm = {x: c.width, y: 100, color:"blue", radius: 25};
+      var player = {x: 75, y: 110, color:"green", radius: 25}; 
+      
+      
+      function draw() {
+        ctx.clearRect(0,0,c.width,c.height);
+        
+        //draw harm
+        
+        console.log(harm);
+        harm.x--;
+        
+        if(harm.x <= 0) {
+          harm.x = c.width;
+        }
+        
+        ctx.fillStyle = harm.color;
+        ctx.beginPath();
+        ctx.arc(harm.x,harm.y,harm.radius,0,2*Math.PI);
+        ctx.fill();
+        
+        //draw player
+        ctx.fillStyle = player.color;
+        ctx.beginPath();
+        ctx.arc(player.x,player.y,player.radius,0,2*Math.PI);
+        ctx.fill();
+        
+        
+        var dx = player.x - harm.x;
+        var dy = player.y - harm.y;
+        var distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < player.radius + harm.radius) {
+            console.log("collision");
+            game.lives--;
+        }
+        
+        
+      
+        requestAnimationFrame(draw);
+      }
+
+
+
+
+      draw();
+
+
+
+
+
+
+    </script>
+  </body>
+</html>
