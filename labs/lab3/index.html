@@ -20,8 +20,8 @@
       var circleX = c.width;
       
       var game = {livesLeft: 3, score: 0, state: "play", level: 1};
-      var benefit = {x: c.width, y: 50, color:"red", radius: 25};
-      var harm = {x: c.width, y: 100, color:"blue", radius: 25};
+      var benefit = {x: c.width, y: 50, color:"blue", radius: 25};
+      var harm = {x: c.width, y: 100, color:"red", radius: 25};
       var player = {x: 75, y: 110, color:"green", radius: 25}; 
       
       
@@ -29,6 +29,8 @@
         
         
         ctx.clearRect(0,0,c.width,c.height);
+        
+
         
          ctx.font = "12px Arial";
         ctx.fillText("Lives: " + game.livesLeft + " Score: " + game.score,10,50);
@@ -78,11 +80,11 @@
             if(game.livesLeft == 0){
               game.state = "over";
               ctx.clearRect(0,0,c.width,c.height);
-              ctx.fillStyle = "blue";
+              ctx.fillStyle = "red";
               ctx.fillRect(0,0,c.width,c.height);
               
               ctx.font = "30px Arial";
-              ctx.fillStyle = "red";
+              ctx.fillStyle = "blue";
               ctx.fillText("Game Over! ",10,50);
               
             }
@@ -115,14 +117,14 @@
                 break;
         
                 case 38: // up
-                player.y--;
+                player.y-=5;
                 break;
         
                 case 39: // right
                 break;
         
                 case 40: // down
-                player.y++;
+                player.y+=5;
                 break;
         
                 default: return; // exit this handler for other keys
