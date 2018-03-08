@@ -6,13 +6,17 @@
     <title>repl.it</title>
   </head>
   <body>
-    <canvas id="myCanvas"></canvas>
+<!--    <canvas id="myCanvas"></canvas>-->
+    <canvas id="myCanvas" width="300" height="300" style="border:1px solid"></canvas>
     <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous">
       </script>
     <script>
+    
+    
+    
       var c=document.getElementById("myCanvas");
       var ctx=c.getContext("2d");
       ctx.fillStyle = "blue";
@@ -20,16 +24,54 @@
       var circleX = c.width;
       
       var game = {livesLeft: 3, score: 0, state: "play", level: 1};
-      var benefit = {x: c.width, y: 50, color:"blue", radius: 25};
-      var harm = {x: c.width, y: 100, color:"red", radius: 25};
-      var player = {x: 75, y: 110, color:"green", radius: 25}; 
+      var benefit = {x: c.width, y: 50, color:"blue", radius: 37.5};
+      var harm = {x: c.width, y: 100, color:"red", radius: 37.5};
+      var player = {x: 75, y: 110, color:"green", radius: 37.5}; 
       
       
+      function make_base()
+      {
+        base_image = new Image();
+        base_image.src = 'background.jpg';
+      //  base_image.onload = function(){
+        ctx.drawImage(base_image, 0, 0);
+     //   }
+      }
+     /* function RectCircleColliding(circle,rect){
+          var distX = Math.abs(circle.x - rect.x-rect.w/2);
+          var distY = Math.abs(circle.y - rect.y-rect.h/2);
+      
+          if (distX > (rect.w/2 + circle.r)) { return false; }
+          if (distY > (rect.h/2 + circle.r)) { return false; }
+      
+          if (distX <= (rect.w/2)) { return true; } 
+          if (distY <= (rect.h/2)) { return true; }
+      
+          var dx=distX-rect.w/2;
+          var dy=distY-rect.h/2;
+          return (dx*dx+dy*dy<=(circle.r*circle.r));
+      }*/
+      
+      var harmImage = new Image();
+      harmImage.src = 'harm.jpg';
+      
+      var playerImage = new Image();
+      playerImage.src = 'player.png';
+ //     ctx.drawImage(img1, 0, 0);
+ 
+      var benefitImage = new Image();
+      benefitImage.src = 'benefit.jpg';
+ //     ctx.drawImage(img1, 0, 0);
+ 
+      var harmCenterX, harmCenterY, benefitCenterX, benefitCenterY, playerCenterX, playerCenterY; 
+
+      
+      make_base();
       function draw() {
         
         
         ctx.clearRect(0,0,c.width,c.height);
-        
+        make_base();
 
         
          ctx.font = "12px Arial";
@@ -40,36 +82,89 @@
         harm.x -= (game.level);
         benefit.x--;
         
+        harmCenterX = harm.x + harm.radius;
+        benefitCenterX = benefit.x + benefit.radius;
+        playerCenterX = player.x + player.radius;
+        
+        
         
         if(harm.x <= 0) {
           harm.y = Math.floor((Math.random() * c.height) + 1);
           harm.x = c.width;
         }
         
+         harmCenterY = harm.y + harm.radius;
+        
         if(benefit.x <= 0) {
           benefit.x = c.width;
           benefit.y = Math.floor((Math.random() * c.height) + 1);
         }
         
-        ctx.fillStyle = benefit.color;
+        benefitCenterY = benefit.y + benefit.radius;
+        playerCenterY = player.y + player.radius;
+        
+     /*   ctx.fillStyle = benefit.color;
         ctx.beginPath();
         ctx.arc(benefit.x,benefit.y,benefit.radius,0,2*Math.PI);
-        ctx.fill();
+        ctx.fill();*/
+        ctx.drawImage(benefitImage, benefit.x, benefit.y);
         
-        ctx.fillStyle = harm.color;
+      /*  ctx.fillStyle = harm.color;
         ctx.beginPath();
         ctx.arc(harm.x,harm.y,harm.radius,0,2*Math.PI);
-        ctx.fill();
+        ctx.fill();*/
+        ctx.drawImage(harmImage, harm.x, harm.y);
         
         //draw player
-        ctx.fillStyle = player.color;
+      /*  ctx.fillStyle = player.color;
         ctx.beginPath();
         ctx.arc(player.x,player.y,player.radius,0,2*Math.PI);
-        ctx.fill();
+        ctx.fill();*/
+        ctx.drawImage(playerImage, player.x, player.y);
         
         
-        var dx = player.x - harm.x;
-        var dy = player.y - harm.y;
+   /*     var distX = Math.abs(playerCenterX - harmCenterX);
+        var distY = Math.abs(playerCenterY - harmCenterY);
+    
+        if ((distX <= 25)) { 
+          game.livesLeft--;
+          console.log(distX);
+            console.log("collision");
+            harm.y = Math.floor((Math.random() * c.height) + 1);
+            harm.x = c.width;
+            if(game.livesLeft == 0){
+              game.state = "over";
+              ctx.clearRect(0,0,c.width,c.height);
+              ctx.fillStyle = "red";
+              ctx.fillRect(0,0,c.width,c.height);
+              
+              ctx.font = "30px Arial";
+              ctx.fillStyle = "blue";
+              ctx.fillText("Game Over! ",10,50);
+              
+            }
+        }
+        if ((distY <= 25)) { 
+          game.livesLeft--;
+          console.log(distX);
+            console.log("collision");
+            harm.y = Math.floor((Math.random() * c.height) + 1);
+            harm.x = c.width;
+            if(game.livesLeft == 0){
+              game.state = "over";
+              ctx.clearRect(0,0,c.width,c.height);
+              ctx.fillStyle = "red";
+              ctx.fillRect(0,0,c.width,c.height);
+              
+              ctx.font = "30px Arial";
+              ctx.fillStyle = "blue";
+              ctx.fillText("Game Over! ",10,50);
+              
+            }
+        } */
+        
+        var dx = (player.x + player.radius) - (harm.x + harm.radius);
+        var dy = (player.y + player.radius) - (harm.y + harm.radius);
         var distance = Math.sqrt(dx * dx + dy * dy);
         
         if (distance < player.radius + harm.radius) {
@@ -90,8 +185,24 @@
             }
         }
         
-        var dx2 = player.x - benefit.x;
-        var dy2 = player.y - benefit.y;
+        
+        
+   /*     var distX2 = Math.abs(playerCenterX - benefitCenterX);
+        var distY2 = Math.abs(playerCenterY - benefitCenterY);
+    
+        if ((distX2 >= benefitCenterX) || (distY2 >= benefitCenterY)) { 
+            console.log(distX);
+            game.score+=100;
+            benefit.x = c.width;
+            benefit.y = Math.floor((Math.random() * c.height) + 1);
+            if(game.score % 100 == 0) {
+              game.level++;
+            }
+        } */
+        
+        
+        var dx2 = (player.x + player.radius) - (benefit.x + benefit.radius);
+        var dy2 = (player.y + player.radius) - (benefit.y + benefit.radius);
         var distance2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
         
         if (distance2 < player.radius + benefit.radius) {
