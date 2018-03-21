@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+    </head>
+    <body>
+    <div id='template'></div>    
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>    
+    <script>
+        $("#template").hide();
+        
+        
+        $.get("https://data.cityofchicago.org/resource/tt4n-kn4t.json?full_or_part_time=F&department=CITY COUNCIL")
+        .done(function(response) {
+                console.log(response);
+            $.each(response, function(i, v) {
+                var name = v.name;
+                var jobTitle = v.job_titles;
+                var content = "Name: " + name + " Job Title: " + jobTitle;
+               // console.log(content)
+                $( "#template" ).append('<p>' + content + '</p>');
+              /*  var contentString = '<div id="content">'+
+                    '<div id="siteNotice">'+
+                    '</div>'+
+                    v.long_name + '</h1>'+
+                    '<div id="bodyContent">'+
+                    '<p>School administrator: ' +  v.administrator +
+                    '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
+                    '<br />Address: ' + v.address +
+                    '<br />School hours: ' + v.school_hours +
+                    '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                    '</p>'+
+                    '</div>'+
+                    '</div>';
+                console.log(v.school_longitude);
+                console.log(v.long_name);
+                var infowindow = new google.maps.InfoWindow({
+                  content: contentString
+                });
+    
+                var image = 'map_icons/city-wide_option.png';
+                var mymarker = new google.maps.Marker({
+                  position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
+                  map: mymap,
+                  title: v.long_name,
+                  icon: image
+                });
+                markers.push(mymarker);
+                
+                console.log(v);
+                    mymarker.addListener('click', function() {
+                    infowindow.open(mymap, mymarker);
+                });
+                $( "#listOfSchools" ).append( '<p>'+ v.long_name +'</p>');
+                $( "#listOfSchools" ).append( '<hr class="mdc-list-divider">');*/
+            });
+        });
+        $("#template").show();
+    </script>    
+    </body>
+</html>
