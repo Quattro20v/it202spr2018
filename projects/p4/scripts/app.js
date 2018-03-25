@@ -365,7 +365,7 @@
   // TODO add service worker code here
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-             .register('../../mvaras2/it202spr2018/projects/p4/service-worker.js')
+             .register('../../projects/p4/service-worker.js')
              .then(function() { console.log('Service Worker Registered'); });
   }
 })();
