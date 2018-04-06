@@ -27,7 +27,7 @@
             var player = { x: c.width / 2, y: c.height / 2, r: 25, color: "blue", speed: 10 };
             var target = { x: c.width / 4, y: c.height / 4, r: 25, color: "red" };
 
-            var utter = new SpeechSynthesisUtterance();
+            //var utter = new SpeechSynthesisUtterance();
 
 
             function draw() {
@@ -43,17 +43,21 @@
                 var dx = player.x - target.x;
                 var dy = player.y - target.y;
                 var distance = Math.sqrt(dx * dx + dy * dy);
+        
+                
 
                 if (distance < player.r + target.r) {
-                    var synth = window.speechSynthesis;
                     
+                    var synth = window.speechSynthesis;
                     player.x = c.width / 2;
                     player.y = c.height / 2;
                     // collision detected!
                     console.log("collision");
+                    
 
                     //TODO:  add vibration upon collision
                     window.navigator.vibrate(200);
+
 
                     //TODO:  add speechSynthesis notification of collision
                     var utterThis = new SpeechSynthesisUtterance("Collision has happened");
