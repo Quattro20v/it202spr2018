@@ -1,0 +1,20 @@
+{
+  "name": "p2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@material/button": "^0.31.0",
+    "@material/checkbox": "^0.31.0",
+    "@material/menu": "^0.31.0",
+    "@material/ripple": "^0.31.0",
+    "@material/select": "^0.31.0",
+    "@material/toolbar": "^0.30.0",
+    "material-components-web": "^0.31.0"
+  }
+}
