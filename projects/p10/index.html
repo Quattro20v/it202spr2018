@@ -25,6 +25,13 @@
               background: #111;
               height: 100%;
               width: 100%;
+              background: url(background.jpg) no-repeat center fixed; 
+                background-size: cover;
+        }
+        .page4 {
+              background: #111;
+              height: 100%;
+              width: 100%;
         }
         .informationBox {
             width: 450px;
@@ -80,6 +87,38 @@
       /*      padding: 10px;*/
         }
         .informationBox2 > button {
+            float: right;
+            margin-right:15px;
+        }
+        .restaurantListBox {
+            width: 80%;
+            /*height: 250px;*/
+            margin-left: 50px;
+            margin-right: 50px;
+            background-color:rgba(255,255,255,.9);
+            border-radius: 25px;
+ /*           border:2px solid black;*/
+        
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        
+            margin: auto;
+            box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        }
+        .restaurantListBox > h2 {
+            text-align:center
+        }
+        .restaurantListBox > p {
+            color : black;
+            padding-top: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+      /*      padding: 10px;*/
+        }
+        .restaurantListBox > button {
             float: right;
             margin-right:15px;
         }
@@ -202,21 +241,21 @@
             <h2 class="mdc-typography--title">
               Welcome to the food app!
             </h2>
-            <p class="mdc-typography--body1">Welcome, you have arrived at a web food app. Now you will never be stranded without food!
+            <p class="mdc-typography--body1">Now you will never be stranded without food!
                 This application will help you find restaurants around you based on the type of restaurant you want to find! Press
-                "Next" when you are ready and find the next place you will eat at.
+                "Next" when you are ready and find the next place you will eat at and satisfy your desires.
             </p>
             <button class="nextButton mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
                   Next
             </button>
         </div>
     </div>
-    <div class="page2">    
+    <div class="page2">
         <div class="informationBox2" >
             <h2 class="mdc-typography--title">
-              School Type Selection
+              Eating out type selection
             </h2>
-            <p class="mdc-typography--body1">Please select the school types that you want to have displayed below and press show map. (Please make sure to press the check, that you want to utilize)
+            <p class="mdc-typography--body1">Please select the types that you want to be searched for in your area!
             </p>
             <div class="mdc-menu-anchor" style="top: 50px; left: 0px;">
             <button id="menu-button" class="material-icons mdc-button \ demo-button--normal">
@@ -264,14 +303,78 @@
                 </ul>
             </div>
           </div>
-            <button class="showMapButton mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
-                  Show Map
+            <button class="searchRestaurantButton mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                  Search
             </button>
         </div>
     </div>
     <div class="page3">
-        <div id="map"></div>
+        <div class="restaurantListBox" >
+            <h2 class="mdc-typography--title">
+              Food list
+            </h2>
+            <!--<p class="mdc-typography--body1">Please select the types that you want to be searched for in your area!
+            </p>
+            <div class="mdc-menu-anchor" style="top: 50px; left: 0px;">
+            <button id="menu-button" class="material-icons mdc-button \ demo-button--normal">
+              menu
+            </button>
+
+            <div class="mdc-menu" style="position: absolute; transform-origin: center top 0px; left: 0px; top: 0px;" tabindex="-1" id="demo-menu">
+                <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
+                <li class="mdc-list-item" role="menuitem" tabindex="0">
+                    <input type="checkbox" name="checkbox1"/>Career Academy
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-1">
+                    <input type="checkbox" name="checkbox2"/>Charter 
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-2">
+                    <input type="checkbox" name="checkbox3"/>Citywide-option 
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-3">
+                    <input type="checkbox" name="checkbox4"/>Classical 
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-4">
+                    <input type="checkbox" name="checkbox5"/>Contract 
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-5">
+                    <input type="checkbox" name="checkbox6"/>Magnet
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-6">
+                    <input type="checkbox" name="checkbox7"/>Military Academy 
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-7">
+                    <input type="checkbox" name="checkbox8"/>Neighborhood 
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-8" >
+                    <input type="checkbox" name="checkbox9"/>Regional gifted center 
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-9">
+                    <input type="checkbox" name="checkbox10"/>Selective enrollment 
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-10">
+                    <input type="checkbox" name="checkbox11"/>Small 
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-11">
+                    <input type="checkbox" name="checkbox12"/>Special education 
+                </li>
+                </ul>
+            </div>
+          </div>
+            <button class="searchRestaurantButton mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                  Show Map
+            </button>
+        </div>-->
+        <ul class="mdc-list">
+          <li class="mdc-list-item">Single-line item</li>
+          <li class="mdc-list-item">Single-line item</li>
+          <li class="mdc-list-item">Single-line item</li>
+        </ul>
+        
     </div>
+    <!--<div class="page4">
+        <div id="map"></div>
+    </div>-->
     
     
     <script
@@ -301,11 +404,13 @@
               center: {lat: 41.866127, lng: -87.652351}
             });
         }
-    
+        $(".page1").hide();
         $("#the-toolbar").hide();
-        $(".page2").hide();
-        $(".informationBox2").hide();
+        //$(".page2").hide();
+        //$(".informationBox2").hide();
         $(".page3").hide();
+        $(".restaurantListBox").hide();
+        $(".page4").hide();
         $("#map").hide();  
         $(document).ready(function(){
             $('.nextButton').on('click', function(event) {        
@@ -317,7 +422,7 @@
             });
             
             $('#backButton').on('click', function(event) {        
-                $(".page3").hide();
+                $(".page4").hide();
                 $("#map").hide();
                 $(".page2").show();
                 $(".informationBox2").show();
@@ -345,11 +450,21 @@
             const checkbox11 = document.querySelector('input[name="checkbox11"]');
             const checkbox12 = document.querySelector('input[name="checkbox12"]');
 
+
+            $('.searchRestaurantButton').on('click', function(event) {
+                $(".page2").hide();
+                $(".informationBox2").hide();
+                $(".page3").show();
+                $(".restaurantListBox").show();
+               // $("#the-toolbar").hide();
+                //$("#listOfSchools").html("");
+                //DeleteMarkers();
+            });
             
            $('.showMapButton').on('click', function(event) {
                 $(".page2").hide();
                 $(".informationBox2").hide();
-                $(".page3").show();
+                $(".page4").show();
                 $("#map").show();
                 $("#the-toolbar").show();
                 if (checkbox1.checked) {
