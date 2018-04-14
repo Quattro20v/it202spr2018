@@ -309,76 +309,35 @@
         </div>
     </div>
     <div class="page3">
-        <div class="restaurantListBox" >
+        <div style="overflow-y: scroll" class="restaurantListBox" >
             <h2 class="mdc-typography--title">
-              Food list
+              A List of Places to Eat At
             </h2>
             
-            <ul class="mdc-list mdc-list--two-line mdc-list--avatar-list demo-list demo-list--with-avatars demo-list--custom demo-list--icon-placeholders">
+            <ul id="restaurantListing" class="restaurantListing mdc-list mdc-list--two-line mdc-list--avatar-list demo-list demo-list--with-avatars demo-list--custom demo-list--icon-placeholders">
                 <li class="mdc-list-item">
                   <span class="mdc-list-item__graphic" role="presentation">
-                    <i class="material-icons" aria-hidden="true">folder</i>
+                    <!--<i class="material-icons" aria-hidden="true">folder</i>-->
+                        <img src="https://s3-media3.fl.yelpcdn.com/bphoto/_9zgtx1fuB-ml_zV7g9zOA/o.jpg" alt="Cheetah!" height="42" width="42"/>
                   </span>
                   <span class="mdc-list-item__text">
                     Photos
                     <span class="mdc-list-item__secondary-text">Jan 9, 2014</span>
                   </span>
-                  <button id="backButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                  <button id="navButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
                     navigation
                   </button>
                          
                   <p align="left">
-                    <button id="backButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                    <button id="addFavButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
                          favorite
                     </button>
-                    <button id="backButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                    <button id="infoButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
                          info
                     </button>
                   </p>
                 </li>
-                <li class="mdc-list-item">
-                  <span class="mdc-list-item__graphic" role="presentation">
-                    <i class="material-icons" aria-hidden="true">folder</i>
-                  </span>
-                  <span class="mdc-list-item__text">
-                    Recipes
-                    <span class="mdc-list-item__secondary-text">Jan 17, 2014</span>
-                  </span>
-                  <button id="backButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
-                    navigation
-                  </button>
-                         
-                  <p align="left">
-                    <button id="backButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
-                         favorite
-                    </button>
-                    <button id="backButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
-                         info
-                    </button>
-                  </p>
-                </li>
-                <li class="mdc-list-item">
-                  <span class="mdc-list-item__graphic" role="presentation">
-                    <i class="material-icons" aria-hidden="true">folder</i>
-                  </span>
-                  <span class="mdc-list-item__text">
-                    Work
-                    <span class="mdc-list-item__secondary-text">Jan 28, 2014</span>
-                  </span>
-                  <button id="backButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
-                    navigation
-                  </button>
-                         
-                  <p align="left">
-                    <button id="backButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
-                         favorite
-                    </button>
-                    <button id="backButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
-                         info
-                    </button>
-                  </p>
-                </li>
-              </ul>
+            </ul>
         
     </div>
     <!--<div class="page4">
@@ -401,8 +360,29 @@
             markers[i].setMap(null);
         }
         markers = [];
-        };    
-    
+        };
+        
+        var userLatitude;
+        var userLongitude;
+        
+        
+        function geo_success(position) {
+          userLatitude = position.coords.latitude;
+          userLongitude = position.coords.longitude;
+          console.log(position);
+        }
+        
+        function geo_error() {
+          console.log("Sorry, no position available.");
+        }
+        
+        var geo_options = {
+          enableHighAccuracy: false, 
+          maximumAge        : 30000, 
+          timeout           : 27000
+        };
+        
+        var wpid = navigator.geolocation.watchPosition(geo_success, geo_error, geo_options);
     
         var mymap;
         var markers = [];
@@ -465,6 +445,86 @@
                 $(".informationBox2").hide();
                 $(".page3").show();
                 $(".restaurantListBox").show();
+                $("#restaurantListing").hide();
+                
+                
+                
+                
+                 $.get("https://script.google.com/macros/s/AKfycbzGKldJBo-3Pe_8dI8BnQzn0l7bYHVrlZQELC8iTcOMNHXd5Qo/exec?&latitude=41.866127&longitude=-87.652351&categories=americannew")
+                    .done(function(response) {
+                        //console.log(response);
+                        console.log(response.businesses.length);
+                        var i;
+                        var business;
+                        //var clonedListing = $(".restaurantListing").clone();
+                        //$(".restaurantListBox").append(clonedListing);
+                       // var clonedListing = $(".restaurantListing").clone();
+                        for(i = 0; i < response.businesses.length; i++)
+                        {   
+                            business = response.businesses[i];
+                            console.log(business);
+                            var clonedListing = $("#restaurantListing").clone();
+                            //console.log(business.name); mdc-list-item__secondary-text
+                            $(clonedListing).find("span.mdc-list-item__text").text(business.name + " (" + business.rating + ")");
+                            $(clonedListing).find("span.mdc-list-item__text").append('<span class="mdc-list-item__secondary-text">' + business.location.display_address[0] + "<br/> " + business.location.display_address[1] + '</span>');
+                            $(clonedListing).find("span.mdc-list-item__graphic").text("");
+                            //$(clonedListing).find("span.mdc-list-item__graphic").append("<img src=&quot;" + business.image_url + "&quot; >")
+                            $(clonedListing).find("span.mdc-list-item__graphic").append("<img src='" + business.image_url + "' alt= ' Labukas ' height='42' width='42' />")
+                            //console.log($(clonedListing).find("span.mdc-list-item__graphic"));
+                            //<img src=&quot;https://s3-media3.fl.yelpcdn.com/bphoto/_9zgtx1fuB-ml_zV7g9zOA/o.jpg &quot; alt= &quot; Labukas &quot; />
+                            //$(clonedListing).find("span.mdc-list-item__text").find("span.mdc-list-item__secondary-text").text("blabla");
+                            $(".restaurantListBox").append(clonedListing);
+                            $(clonedListing).show();
+                            
+                        }
+                        //$.each(response, function(i, v) {
+                            
+                        //    var clonedListing = $(".restaurantListing").clone();
+                        //    console.log(v.name);
+                            //$( "clonedListing > span.mdc-list-item__text").append('<p>'+ v.long_name +'</p>');
+                            //$(clonedListing).find("span.mdc-list-item__text").text(v.name);
+                            //$("p", clonedListing).text(v.name)
+                            //$("p", clonedListing).find(".mdc-list-item__text").text(v.name);
+                            //$(clonedListing).find(".mdc-list-item__text")
+                        //    $(".restaurantListBox").append(clonedListing)
+                            
+                            /*//console.log(v);
+                            var contentString = '<div id="content">'+
+                                '<div id="siteNotice">'+
+                                '</div>'+
+                                v.long_name + '</h1>'+
+                                '<div id="bodyContent">'+
+                                '<p>School administrator: ' +  v.administrator +
+                                '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
+                                '<br />Address: ' + v.address +
+                                '<br />School hours: ' + v.school_hours +
+                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                '</p>'+
+                                '</div>'+
+                                '</div>';
+                            console.log(v.school_longitude);
+                            console.log(v.long_name);
+                            var infowindow = new google.maps.InfoWindow({
+                              content: contentString
+                            });
+    
+                            var image = 'map_icons/charter.png';
+                            var mymarker = new google.maps.Marker({
+                              position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
+                              map: mymap,
+                              title: v.long_name,
+                              icon: image
+                            });
+                            markers.push(mymarker);
+                            
+                            console.log(v);
+                                mymarker.addListener('click', function() {
+                                infowindow.open(mymap, mymarker);
+                            });
+                            $( "#listOfSchools" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#listOfSchools" ).append( '<hr class="mdc-list-divider">');*/
+            //        });
+                });
                // $("#the-toolbar").hide();
                 //$("#listOfSchools").html("");
                 //DeleteMarkers();
