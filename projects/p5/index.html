@@ -5,8 +5,21 @@
     </head>
     <body>
     <video id="player" controls autoplay></video>
+    <div>
     <button id="capture">Capture</button>
-    <canvas id="canvas" width=320 height=240></canvas>
+    </br></div>
+    <div id="hidden">
+      <canvas id="canvas" width=320 height=240></canvas>
+    </div>
+    </br>
+    <!--<canvas id="canvas2" width=320 height=240></canvas>-->
+    <div id="imageData">
+    </div>
+    <div id="contentBody">
+      <div id="specificContent">
+          <canvas id="canvas2" width=320 height=240></canvas>
+      </div>
+    </div>
     <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -14,17 +27,25 @@
     </script>
     <script>
       const player = document.getElementById('player');
+      const canvas2 = document.getElementById('canvas2');
+      const context2 = canvas2.getContext('2d');
       const canvas = document.getElementById('canvas');
       const context = canvas.getContext('2d');
       const captureButton = document.getElementById('capture');
+      var canvas3 = [];
+      var context3 = [];
+      var count = 0;
     
       const constraints = {
         video: true,
       };
+      
+      $("#hidden").hide();
     
       captureButton.addEventListener('click', () => {
         // Draw the video frame to the canvas.
-        context.drawImage(player, 0+canvas.width, 0+canvas.height, canvas.width, canvas.height);
+        context.drawImage(player, 0, 0, canvas.width, canvas.height);
+        getImageData();
       });
     
       // Attach the video stream to the video element and autoplay.
@@ -33,7 +54,7 @@
           player.srcObject = stream;
         });
      
-     getImageData();
+     //getImageData();
      function getImageData(){
         var requestBody = {"requests":[
             {
@@ -43,28 +64,73 @@
               "features":[
                 {
                   "type":"FACE_DETECTION",
-                  "maxResults":10
+                  "maxResults":20
                 }
               ]
             }
         ]
-        }
-
-
+        };
+        var clone, faceCount;
         $.ajax({
             method: "POST",
             contentType: "application/json",
-            url: "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyD5b9BH57vwQmLX37SN7v-anZo",
+            url: "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAW85ZSYCRiQikO7WqZAPIFyX7vsbalPqI",
+            data :JSON.stringify(requestBody)
+        })  
+         .done(function(response) {
+           if (!$.trim(response.responses[0].faceAnnotations)){
+             alert("No face has been found");
+           }
+           else
+           {
+            console.log(response);
+            console.log(response.responses[0].faceAnnotations[0].boundingPoly.vertices);
+            clone = $("#specificContent").clone();
+            $(clone).html("<canvas id='canvas3" + count +"' width=320 height=240></canvas>")
+            $("#contentBody").prepend(clone);
+            canvas3.push(document.getElementById('canvas3' + count));
+            canvas3[count].width = response.responses[0].faceAnnotations[0].boundingPoly.vertices[1].x - response.responses[0].faceAnnotations[0].boundingPoly.vertices[0].x;
+            canvas3[count].height = response.responses[0].faceAnnotations[0].boundingPoly.vertices[2].y - response.responses[0].faceAnnotations[0].boundingPoly.vertices[0].y;
+            context3[count] = canvas3[count].getContext('2d');
+            context3[count].drawImage(canvas, response.responses[0].faceAnnotations[0].boundingPoly.vertices[0].x, response.responses[0].faceAnnotations[0].boundingPoly.vertices[0].y, response.responses[0].faceAnnotations[0].boundingPoly.vertices[1].x ,response.responses[0].faceAnnotations[0].boundingPoly.vertices[2].y, 0, 0, response.responses[0].faceAnnotations[0].boundingPoly.vertices[1].x - response.responses[0].faceAnnotations[0].boundingPoly.vertices[0].x, response.responses[0].faceAnnotations[0].boundingPoly.vertices[2].y - response.responses[0].faceAnnotations[0].boundingPoly.vertices[0].y);
+           }
+            
+         });
+         
+        requestBody = {"requests":[
+            {
+              "image":{
+                "content": canvas.toDataURL().split(",")[1]
+              },
+              "features":[
+                {
+                  "type":"LABEL_DETECTION",
+                  "maxResults":20
+                }
+              ]
+            }
+        ]
+        };
+         
+         $.ajax({
+            method: "POST",
+            contentType: "application/json",
+            url: "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAW85ZSYCRiQikO7WqZAPIFyX7vsbalPqI",
             data :JSON.stringify(requestBody)
         })  
          .done(function(response) {
             console.log(response);
-            $("#imageData").html("<pre>" + JSON.stringify(response) + "</pre>")
+            //console.log(response.responses[0].labelAnnotations[0].boundingPoly.vertices);
+            var i;
+            
+            for(i = 0; i < response.responses[0].labelAnnotations.length; i++)
+            {
+              clone.append("Description: " + response.responses[0].labelAnnotations[i].description + " Score: " + response.responses[0].labelAnnotations[i].score)
+            }
+            count++;
          });
     
      }
-              
-        
     </script>
     </body>
 </html>
