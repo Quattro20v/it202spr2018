@@ -199,7 +199,7 @@
     
     
     <head>
-        <title>Material Components for the web</title>
+        <title>Food App</title>
         <link rel="stylesheet"
           href="material-components-web.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -340,6 +340,27 @@
             </ul>
         
     </div>
+    <aside id="moreInfoDialog"
+      class="mdc-dialog"
+      role="alertdialog"
+      aria-labelledby="my-mdc-dialog-label"
+      aria-describedby="my-mdc-dialog-description">
+      <div class="mdc-dialog__surface">
+        <header class="mdc-dialog__header">
+          <h2 id="my-mdc-dialog-label" class="mdc-dialog__header__title">
+            Use Google's location service?
+          </h2>
+        </header>
+        <section id="my-mdc-dialog-description" class="mdc-dialog__body">
+          Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+        </section>
+        <footer class="mdc-dialog__footer">
+          <!--<button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">Decline</button> -->
+          <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Exit</button>
+        </footer>
+      </div>
+      <div class="mdc-dialog__backdrop"></div>
+    </aside>
     <!--<div class="page4">
         <div id="map"></div>
     </div>-->
@@ -362,9 +383,9 @@
         markers = [];
         };
         
-        var userLatitude;
-        var userLongitude;
-        
+        var userLatitude, 
+            userLongitude, 
+            restaurantListings;
         
         function geo_success(position) {
           userLatitude = position.coords.latitude;
@@ -425,6 +446,10 @@
                 
             });
             
+            const MDCDialog = mdc.dialog.MDCDialog;
+            const MDCDialogFoundation = mdc.dialog.MDCDialogFoundation;
+            const util = mdc.dialog.util;
+            var dialog = new mdc.dialog.MDCDialog(document.querySelector('#moreInfoDialog'));
             
             const checkbox1 = document.querySelector('input[name="checkbox1"]');
             const checkbox2 = document.querySelector('input[name="checkbox2"]');
@@ -439,7 +464,37 @@
             const checkbox11 = document.querySelector('input[name="checkbox11"]');
             const checkbox12 = document.querySelector('input[name="checkbox12"]');
 
-
+            function showInfo(buttonID){
+                console.log(buttonID);
+                var business;
+                //var splitString = buttonID.split("/");
+                //var type = splitString[0];
+                var type = buttonID.substring(0,4);
+                //var id = splitString[1];
+                var id = buttonID.substring(4);
+                if(type == "info"){
+                    for(var i = 0; i  < restaurantListings.businesses.length; i++ ){
+                        if(id == restaurantListings.businesses[i].id) { 
+                            business = restaurantListings.businesses[i]; 
+                            break;
+                        }
+                    }
+                    $("#moreInfoDialog").find("#my-mdc-dialog-label").html("<h2 id='my-mdc-dialog-label' class='mdc-dialog__header__title'>" + business.name + "</h2>");
+                    $("#moreInfoDialog").find("#my-mdc-dialog-description").text("");
+                    $("#moreInfoDialog").find("#my-mdc-dialog-description").append(
+                        "Rating: " + business.rating + "/5 </br>"
+                        + "Phone Number: " + business.display_phone + "</br>"
+                        + "Cost: " + business.price + "</br>"
+                        + "Reviews: " + business.review_count);
+                    
+                    
+                    
+                    dialog.show();
+                } else if(type == "favorite"){
+                } else if(type == "navigation"){
+                }
+            }
+            
             $('.searchRestaurantButton').on('click', function(event) {
                 $(".page2").hide();
                 $(".informationBox2").hide();
@@ -452,29 +507,39 @@
                 
                  $.get("https://script.google.com/macros/s/AKfycbzGKldJBo-3Pe_8dI8BnQzn0l7bYHVrlZQELC8iTcOMNHXd5Qo/exec?&latitude=41.866127&longitude=-87.652351&categories=americannew")
                     .done(function(response) {
-                        //console.log(response);
+                        console.log(response);
                         console.log(response.businesses.length);
                         var i;
                         var business;
+                        restaurantListings =response;
                         //var clonedListing = $(".restaurantListing").clone();
                         //$(".restaurantListBox").append(clonedListing);
                        // var clonedListing = $(".restaurantListing").clone();
                         for(i = 0; i < response.businesses.length; i++)
+                        //for(i = 0; i < 2; i++)
                         {   
                             business = response.businesses[i];
-                            console.log(business);
+                            console.log(response.businesses[i]);
                             var clonedListing = $("#restaurantListing").clone();
                             //console.log(business.name); mdc-list-item__secondary-text
                             $(clonedListing).find("span.mdc-list-item__text").text(business.name + " (" + business.rating + ")");
                             $(clonedListing).find("span.mdc-list-item__text").append('<span class="mdc-list-item__secondary-text">' + business.location.display_address[0] + "<br/> " + business.location.display_address[1] + '</span>');
                             $(clonedListing).find("span.mdc-list-item__graphic").text("");
-                            //$(clonedListing).find("span.mdc-list-item__graphic").append("<img src=&quot;" + business.image_url + "&quot; >")
-                            $(clonedListing).find("span.mdc-list-item__graphic").append("<img src='" + business.image_url + "' alt= ' Labukas ' height='42' width='42' />")
-                            //console.log($(clonedListing).find("span.mdc-list-item__graphic"));
-                            //<img src=&quot;https://s3-media3.fl.yelpcdn.com/bphoto/_9zgtx1fuB-ml_zV7g9zOA/o.jpg &quot; alt= &quot; Labukas &quot; />
-                            //$(clonedListing).find("span.mdc-list-item__text").find("span.mdc-list-item__secondary-text").text("blabla");
+                        
+                            $(clonedListing).find("span.mdc-list-item__graphic").append("<img src='" + business.image_url + "' alt= ' Labukas ' height='42' width='42' />");
+                            
+                            $(clonedListing).find("#infoButton").attr("id", "info"+business.id);
+                            //console.log($(clonedListing).find("#infoButton" + i));
+                            //$("#infoButton" + i).off('click').click(function(){showInfo(i)});
+                            //$('#infoButton').off('click').click(function(evt){showInfo(i)});
+                            
+                            
                             $(".restaurantListBox").append(clonedListing);
                             $(clonedListing).show();
+                            console.log("businessid: " + business.id);
+                            //console.log(showInfo(business.id));
+                            $("#info" + business.id).off('click').click(function(){showInfo(this.id)});
+                            //$('#infoButton').off('click').click(function(evt){showInfo(i)});
                             
                         }
                         //$.each(response, function(i, v) {
@@ -747,6 +812,7 @@
                     });
                 }
                 if (checkbox6.checked) {
+                    $.get("https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ('Classical')")
                     $.get("https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ('Magnet')")
                         .done(function(response) {
                             console.log(response);
@@ -956,93 +1022,62 @@
                         });
                     });
                 }
-                if (checkbox11.checked) {
-                    $.get("https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ('Small')")
-                        .done(function(response) {
-                            console.log(response);
-                        $.each(response, function(i, v) {
-                            var contentString = '<div id="content">'+
-                                '<div id="siteNotice">'+
-                                '</div>'+
-                                v.long_name + '</h1>'+
-                                '<div id="bodyContent">'+
-                                '<p>School administrator: ' +  v.administrator +
-                                '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
-                                '<br />Address: ' + v.address +
-                                '<br />School hours: ' + v.school_hours +
-                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
-                                '</p>'+
-                                '</div>'+
-                                '</div>';
-                            console.log(v.school_longitude);
-                            console.log(v.long_name);
-                            var infowindow = new google.maps.InfoWindow({
-                              content: contentString
-                            });
-
-                            var image = 'map_icons/small.png';
-                            var mymarker = new google.maps.Marker({
-                              position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
-                              map: mymap,
-                              title: v.long_name,
-                              icon: image
-                            });
-                            markers.push(mymarker);
-                            
-                            console.log(v);
-                                mymarker.addListener('click', function() {
-                                infowindow.open(mymap, mymarker);
-                            });
-                            $( "#listOfSchools" ).append( '<p>'+ v.long_name +'</p>');
-                            $( "#listOfSchools" ).append( '<hr class="mdc-list-divider">');
-                        });
-                    });
-                }
-                if (checkbox12.checked) {
-                    $.get("https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ('Special Education')")
-                        .done(function(response) {
-                            console.log(response);
-                        $.each(response, function(i, v) {
-                            var contentString = '<div id="content">'+
-                                '<div id="siteNotice">'+
-                                '</div>'+
-                                v.long_name + '</h1>'+
-                                '<div id="bodyContent">'+
-                                '<p>School administrator: ' +  v.administrator +
-                                '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
-                                '<br />Address: ' + v.address +
-                                '<br />School hours: ' + v.school_hours +
-                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
-                                '</p>'+
-                                '</div>'+
-                                '</div>';
-                            console.log(v.school_longitude);
-                            console.log(v.long_name);
-                            var infowindow = new google.maps.InfoWindow({
-                              content: contentString
-                            });
-
-                            var image = 'map_icons/special_education.png';
-                            var mymarker = new google.maps.Marker({
-                              position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
-                              map: mymap,
-                              title: v.long_name,
-                              icon: image
-                            });
-                            markers.push(mymarker);
-                            
-                            console.log(v);
-                                mymarker.addListener('click', function() {
-                                infowindow.open(mymap, mymarker);
-                            });
-                            $( "#listOfSchools" ).append( '<p>'+ v.long_name +'</p>');
-                            $( "#listOfSchools" ).append( '<hr class="mdc-list-divider">');
-                        });
-                    });
-                }
+                if (checkbox11.checked) { someRandomFunctionName("Small", "map_icons/small.png"); }
+                if (checkbox12.checked) { someRandomFunctionName("Special Education", "map_icons/special_education.png"); }                if (checkbox11.checked) { someRandomFunctionName("Small", "map_icons/small.png"); }
+                if (checkbox12.checked) { someRandomFunctionName("Special Education", "map_icons/special_education.png"); }                if (checkbox11.checked) { someRandomFunctionName("Small", "map_icons/small.png"); }
+                if (checkbox12.checked) { someRandomFunctionName("Special Education", "map_icons/special_education.png"); }                if (checkbox11.checked) { someRandomFunctionName("Small", "map_icons/small.png"); }
+                if (checkbox12.checked) { someRandomFunctionName("Special Education", "map_icons/special_education.png"); }                if (checkbox11.checked) { someRandomFunctionName("Small", "map_icons/small.png"); }
+                if (checkbox12.checked) { someRandomFunctionName("Special Education", "map_icons/special_education.png"); }                if (checkbox11.checked) { someRandomFunctionName("Small", "map_icons/small.png"); }
+                if (checkbox12.checked) { someRandomFunctionName("Special Education", "map_icons/special_education.png"); }                if (checkbox11.checked) { someRandomFunctionName("Small", "map_icons/small.png"); }
+                if (checkbox12.checked) { someRandomFunctionName("Special Education", "map_icons/special_education.png"); }                if (checkbox11.checked) { someRandomFunctionName("Small", "map_icons/small.png"); }
+                if (checkbox12.checked) { someRandomFunctionName("Special Education", "map_icons/special_education.png"); }                if (checkbox11.checked) { someRandomFunctionName("Small", "map_icons/small.png"); }
+                if (checkbox12.checked) { someRandomFunctionName("Special Education", "map_icons/special_education.png"); }                if (checkbox11.checked) { someRandomFunctionName("Small", "map_icons/small.png"); }
+                if (checkbox12.checked) { someRandomFunctionName("Special Education", "map_icons/special_education.png"); }
             });
         });
         
+    function someRandomFunctionName(url, image){
+                $.get('https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ('+url+')')
+                        .done(function(response) {
+                            console.log(response);
+                        $.each(response, function(i, v) {
+                            var contentString = '<div id="content">'+
+                                '<div id="siteNotice">'+
+                                '</div>'+
+                                v.long_name + '</h1>'+
+                                '<div id="bodyContent">'+
+                                '<p>School administrator: ' +  v.administrator +
+                                '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
+                                '<br />Address: ' + v.address +
+                                '<br />School hours: ' + v.school_hours +
+                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                '</p>'+
+                                '</div>'+
+                                '</div>';
+                            console.log(v.school_longitude);
+                            console.log(v.long_name);
+                            var infowindow = new google.maps.InfoWindow({
+                              content: contentString
+                            });
+
+                            var image = imageName;
+                            var mymarker = new google.maps.Marker({
+                              position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
+                              map: mymap,
+                              title: v.long_name,
+                              icon: image
+                            });
+                            markers.push(mymarker);
+                            
+                            console.log(v);
+                                mymarker.addListener('click', function() {
+                                infowindow.open(mymap, mymarker);
+                            });
+                            $( "#listOfSchools" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#listOfSchools" ).append( '<hr class="mdc-list-divider">');
+                        });
+                    });
+    }
       $(document).ready(function(){
         var menuEl = document.querySelector('#demo-menu');
         var menu = new mdc.menu.MDCMenu(menuEl);
