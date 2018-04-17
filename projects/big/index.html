@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    <head>
     <style>
     
         body {
@@ -32,7 +33,14 @@
               background: #111;
               height: 100%;
               width: 100%;
+              background: url(background.jpg) no-repeat center fixed; 
+                background-size: cover;
         }
+        /*.page4 {
+              background: #111;
+              height: 100%;
+              width: 100%;
+        }*/
         .informationBox {
             width: 450px;
             height: 250px;
@@ -61,7 +69,8 @@
             margin-right:15px;
         }
         .informationBox2 {
-            width: 450px;
+           /* width: 450px;*/
+            width: 50%; 
             height: 250px;
             background-color:rgba(255,255,255,.6);
             border-radius: 25px;
@@ -92,6 +101,7 @@
         }
         .restaurantListBox {
             width: 80%;
+            height: 90vh;
             /*height: 250px;*/
             margin-left: 50px;
             margin-right: 50px;
@@ -122,6 +132,40 @@
             float: right;
             margin-right:15px;
         }
+        .favoriteListBox {
+            width: 80%;
+            height: 90vh;
+            /*height: 250px;*/
+            margin-left: 50px;
+            margin-right: 50px;
+            background-color:rgba(255,255,255,.9);
+            border-radius: 25px;
+ /*           border:2px solid black;*/
+        
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        
+            margin: auto;
+            box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        }
+        .favoriteListBox > h2 {
+            text-align:center
+        }
+        .favoriteListBox > p {
+            color : black;
+            padding-top: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+      /*      padding: 10px;*/
+        }
+        .favoritetListBox > button {
+            float: right;
+            margin-right:15px;
+        }
+        
         #map {
             height: 100%;
         }
@@ -197,33 +241,32 @@
     
     </style>
     
-    
-    <head>
         <title>Food App</title>
         <link rel="stylesheet"
           href="material-components-web.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <title> </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     
-    <header class="mdc-toolbar" id="the-toolbar">
+    <header class="mdc-toolbar mdc-toolbar--fixed" id="the-toolbar">
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-          <button id="drawerButton" class=" material-icons mdc-toolbar__menu-icon mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
-                  menu
+          <button id="backButton" class=" material-icons mdc-toolbar__menu-icon mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                  arrow_back
             </button>
-          <span class="mdc-toolbar__title">Map of Schools in Chicago</span>
+          <span class="mdc-toolbar__title">Food App</span>
         </section>
         <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
-           <button id="backButton" class=" material-icons mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
-                  arrow_back
+           <button id="favoriteButton" class=" material-icons mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                  favorite
             </button>
         </section>
       </div>
     </header>
     
     <body class="mdc-typography">
-        <aside class="mdc-drawer mdc-drawer--temporary demo-drawer" style="">
+        <!--<aside class="mdc-drawer mdc-drawer--temporary demo-drawer" style="">
             <nav class="mdc-drawer__drawer">
                 <header class="mdc-drawer__header">
                     <div class="mdc-drawer__header-content mdc-theme--text-primary-on-primary mdc-theme--primary-bg">
@@ -235,7 +278,7 @@
             </div>
             </nav>
       </nav>
-    </aside>
+    </aside>-->
     <div class="page1">   
         <div class="informationBox" >
             <h2 class="mdc-typography--title">
@@ -338,9 +381,62 @@
                   </p>
                 </li>
             </ul>
-        
+        </div>
+    </div>
+     <div class="page4">
+        <div style="overflow-y: scroll" class="favoriteListBox" >
+            <h2 class="mdc-typography--title">
+              Favorites
+            </h2>
+            
+            <ul id="favoriteListing" class="favoriteListing mdc-list mdc-list--two-line mdc-list--avatar-list demo-list demo-list--with-avatars demo-list--custom demo-list--icon-placeholders">
+                <li class="mdc-list-item">
+                  <span class="mdc-list-item__graphic" role="presentation">
+                    <!--<i class="material-icons" aria-hidden="true">folder</i>-->
+                        <img src="https://s3-media3.fl.yelpcdn.com/bphoto/_9zgtx1fuB-ml_zV7g9zOA/o.jpg" alt="Cheetah!" height="42" width="42"/>
+                  </span>
+                  <span class="mdc-list-item__text">
+                    Photos
+                    <span class="mdc-list-item__secondary-text">Jan 9, 2014</span>
+                  </span>
+                  <button id="navButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                    navigation
+                  </button>
+                         
+                  <p align="left">
+                    <button id="addFavButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                         favorite
+                    </button>
+                    <button id="infoButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                         info
+                    </button>
+                  </p>
+                </li>
+            </ul>
+        </div>
     </div>
     <aside id="moreInfoDialog"
+      class="mdc-dialog"
+      role="alertdialog"
+      aria-labelledby="my-mdc-dialog-label"
+      aria-describedby="my-mdc-dialog-description">
+      <div class="mdc-dialog__surface">
+        <header class="mdc-dialog__header">
+          <h2 id="my-mdc-dialog-label" class="mdc-dialog__header__title">
+            Use Google's location service?
+          </h2>
+        </header>
+        <section id="my-mdc-dialog-description" class="mdc-dialog__body">
+          Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+        </section>
+        <footer class="mdc-dialog__footer">
+          <!--<button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">Decline</button> -->
+          <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Exit</button>
+        </footer>
+      </div>
+      <div class="mdc-dialog__backdrop"></div>
+    </aside>
+    <aside id="moreInfoDialog2"
       class="mdc-dialog"
       role="alertdialog"
       aria-labelledby="my-mdc-dialog-label"
@@ -371,6 +467,7 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous">
     </script>
+    <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
 
     <script src="material-components-web.js"></script>
     
@@ -415,13 +512,15 @@
             });
         }
         $(".page1").hide();
-        $("#the-toolbar").hide();
+        //$("#the-toolbar").hide();
         //$(".page2").hide();
         //$(".informationBox2").hide();
         $(".page3").hide();
         $(".restaurantListBox").hide();
         $(".page4").hide();
-        $("#map").hide();  
+        $(".favoriteListBox").hide();
+        $("#map").hide();
+        $("#backButton").hide();
         $(document).ready(function(){
             $('.nextButton').on('click', function(event) {        
                 $(".page1").hide();
@@ -450,6 +549,7 @@
             const MDCDialogFoundation = mdc.dialog.MDCDialogFoundation;
             const util = mdc.dialog.util;
             var dialog = new mdc.dialog.MDCDialog(document.querySelector('#moreInfoDialog'));
+            var dialog2 = new mdc.dialog.MDCDialog(document.querySelector('#moreInfoDialog2'));
             
             const checkbox1 = document.querySelector('input[name="checkbox1"]');
             const checkbox2 = document.querySelector('input[name="checkbox2"]');
@@ -495,6 +595,91 @@
                 }
             }
             
+            function addToFavorites(buttonID){
+                console.log(buttonID);
+                var business;
+                //var splitString = buttonID.split("/");
+                //var type = splitString[0];
+                var type = buttonID.substring(0,6);
+                //var id = splitString[1];
+                var id = buttonID.substring(6);
+                console.log(id);
+                if(type == "addFav"){
+                    for(var i = 0; i  < restaurantListings.businesses.length; i++ ){
+                        if(id == restaurantListings.businesses[i].id) { 
+                            business = restaurantListings.businesses[i]; 
+                            break;
+                        }
+                    }
+                }
+                db.favorites.add({ businessID: id, name: business.name, rating: business.rating, phone: business.display_phone, cost: business.price, reviews: business.review_count, address1: business.location.display_address[0], address2: business.location.display_address[1]});
+                
+                
+                
+                /*db.friends.add({ name: "Ylva", shoeSize: 37 });
+                db.friends.add({ name: "Jon", shoeSize: 44 });
+                db.friends.add({ name: "Måns", shoeSize: 42 });
+                db.friends.add({ name: "Daniel", shoeSize: 39 });
+                db.friends.add({ name: "Nils", shoeSize: 45 });
+                db.friends.add({ name: "Zlatan", shoeSize: 47 });
+                // Log data from DB:
+                db.friends.orderBy('name').each(function (friend) {
+                    log(JSON.stringify(friend));
+                }*/
+                
+                
+                /*db.favorites.put({businessID: id, restaurant: business});/*.then (function(){
+                      //
+                      // Then when data is stored, read from it
+                      //
+                      return db.friends.get('Nicolas');
+                  }).then(function (friend) {
+                      //
+                      // Display the result
+                      //
+                      alert ("Nicolas has shoe size " + friend.shoeSize);
+                  }).catch(function(error) {
+                     //
+                     // Finally don't forget to catch any error
+                     // that could have happened anywhere in the
+                     // code blocks above.
+                     //
+                     alert ("Ooops: " + error);
+                  });*/
+            }
+            $('#favoriteButton').on('click', function(event) {
+                $(".page2").hide();
+                $(".informationtBox2").hide();
+                $(".page3").hide();
+                $(".restaurantListBox").hide();
+                $(".page4").show();
+                $(".favoriteListBox").show();
+                
+                
+                db.favorites.each(favorite => addToFavoriteListing(favorite.businessID, favorite.name, favorite.rating, favorite.phone, favorite.cost, favorite.reviews, favorite.address1, favorite.address2));
+                
+            });
+            function addToFavoriteListing(businessID, name, rating, phone, cost, reviews, address1, address2){
+                var clonedListing = $("#favoriteListing").clone();
+                //console.log(business.name); mdc-list-item__secondary-text
+                $(clonedListing).find("span.mdc-list-item__text").text(name + " (" + rating + ")");
+                $(clonedListing).find("span.mdc-list-item__text").append('<span class="mdc-list-item__secondary-text">' + address1 + "<br/> " + address2 + '</span>');
+                $(clonedListing).find("span.mdc-list-item__graphic").text("");
+            
+                //$(clonedListing).find("span.mdc-list-item__graphic").append("<img src='" + business.image_url + "' alt= ' Labukas ' height='42' width='42' />");
+                
+                //$(clonedListing).find("#infoButton").attr("id", "info"+business.id);
+                //$(clonedListing).find("#addFavButton").attr("id", "addFav"+business.id);
+                
+                
+                $(".favoriteListBox").append(clonedListing);
+                $(clonedListing).show();
+                //console.log("businessid: " + business.id);
+                //console.log(showInfo(business.id));
+                //$("#info" + business.id).off('click').click(function(){showInfo(this.id)});
+                //$("#addFav" + business.id).off('click').click(function(){addToFavorites(this.id)});
+                //$('#infoButton').off('click').click(function(evt){showInfo(i)});
+            }
             $('.searchRestaurantButton').on('click', function(event) {
                 $(".page2").hide();
                 $(".informationBox2").hide();
@@ -529,9 +714,7 @@
                             $(clonedListing).find("span.mdc-list-item__graphic").append("<img src='" + business.image_url + "' alt= ' Labukas ' height='42' width='42' />");
                             
                             $(clonedListing).find("#infoButton").attr("id", "info"+business.id);
-                            //console.log($(clonedListing).find("#infoButton" + i));
-                            //$("#infoButton" + i).off('click').click(function(){showInfo(i)});
-                            //$('#infoButton').off('click').click(function(evt){showInfo(i)});
+                            $(clonedListing).find("#addFavButton").attr("id", "addFav"+business.id);
                             
                             
                             $(".restaurantListBox").append(clonedListing);
@@ -539,6 +722,7 @@
                             console.log("businessid: " + business.id);
                             //console.log(showInfo(business.id));
                             $("#info" + business.id).off('click').click(function(){showInfo(this.id)});
+                            $("#addFav" + business.id).off('click').click(function(){addToFavorites(this.id)});
                             //$('#infoButton').off('click').click(function(evt){showInfo(i)});
                             
                         }
@@ -1136,7 +1320,38 @@
         });
 
       });
-    
+      
+
+//----------------------------------------------------------DATABASE CREATION-----------------------------------------      
+      //
+      // Define your database
+      //
+      var db = new Dexie("foodApp_database");
+      db.version(1).stores({
+          favorites: 'businessID, name, rating, phone, cost, reviews, address1, address2'
+      });
+      /*
+      // Put some data into it
+      //
+      db.friends.put({name: "Nicolas", shoeSize: 8}).then (function(){
+          //
+          // Then when data is stored, read from it
+          //
+          return db.friends.get('Nicolas');
+      }).then(function (friend) {
+          //
+          // Display the result
+          //
+          alert ("Nicolas has shoe size " + friend.shoeSize);
+      }).catch(function(error) {
+         //
+         // Finally don't forget to catch any error
+         // that could have happened anywhere in the
+         // code blocks above.
+         //
+         alert ("Ooops: " + error);
+      });*/
+      
 
         
         
