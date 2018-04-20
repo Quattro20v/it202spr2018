@@ -405,7 +405,7 @@
                          
                   <p align="left">
                     <button id="addFavButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
-                         favorite
+                         favorite_border
                     </button>
                     <button id="infoButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
                          info
@@ -521,6 +521,7 @@
         $(".favoriteListBox").hide();
         $("#map").hide();
         $("#backButton").hide();
+        $("#favoriteListing").hide();
         $(document).ready(function(){
             $('.nextButton').on('click', function(event) {        
                 $(".page1").hide();
@@ -590,8 +591,31 @@
                     
                     
                     dialog.show();
-                } else if(type == "favorite"){
-                } else if(type == "navigation"){
+                } else {
+                    id = buttonID.substring(7);
+                    db.favorites.where("businessID").equals(id).each(function (restaurant) {
+                        //console.log("Found: " + friend.name + ". Phone: " + friend.phoneNumber);
+                        business = restaurant.business;
+                    
+                    $("#moreInfoDialog").find("#my-mdc-dialog-label").html("<h2 id='my-mdc-dialog-label' class='mdc-dialog__header__title'>" + business.name + "</h2>");
+                    $("#moreInfoDialog").find("#my-mdc-dialog-description").text("");
+                    $("#moreInfoDialog").find("#my-mdc-dialog-description").append(
+                        "Rating: " + business.rating + "/5 </br>"
+                        + "Phone Number: " + business.display_phone + "</br>"
+                        + "Cost: " + business.price + "</br>"
+                        + "Reviews: " + business.review_count);
+                    
+                    
+                    
+                    dialog.show();
+                        
+                        
+                        
+                    }).catch(function (error) {
+                        console.error(error);
+                    });
+                //} else if(type == "favorite"){
+                //} else if(type == "navigation"){
                 }
             }
             
@@ -611,41 +635,18 @@
                             break;
                         }
                     }
+                    db.favorites.add({ businessID: id, business: business});
+                } else {
+                    id = buttonID.substring(9);
+                    db.favorites
+                        .where("businessID").equals(id)
+                        .delete()
+                        .then(function (deleteCount) {
+                            console.log( "Deleted " + deleteCount + " objects");
+                        });
+                         $("#favoriteListing"+id).empty();
                 }
-                db.favorites.add({ businessID: id, name: business.name, rating: business.rating, phone: business.display_phone, cost: business.price, reviews: business.review_count, address1: business.location.display_address[0], address2: business.location.display_address[1]});
-                
-                
-                
-                /*db.friends.add({ name: "Ylva", shoeSize: 37 });
-                db.friends.add({ name: "Jon", shoeSize: 44 });
-                db.friends.add({ name: "Måns", shoeSize: 42 });
-                db.friends.add({ name: "Daniel", shoeSize: 39 });
-                db.friends.add({ name: "Nils", shoeSize: 45 });
-                db.friends.add({ name: "Zlatan", shoeSize: 47 });
-                // Log data from DB:
-                db.friends.orderBy('name').each(function (friend) {
-                    log(JSON.stringify(friend));
-                }*/
-                
-                
-                /*db.favorites.put({businessID: id, restaurant: business});/*.then (function(){
-                      //
-                      // Then when data is stored, read from it
-                      //
-                      return db.friends.get('Nicolas');
-                  }).then(function (friend) {
-                      //
-                      // Display the result
-                      //
-                      alert ("Nicolas has shoe size " + friend.shoeSize);
-                  }).catch(function(error) {
-                     //
-                     // Finally don't forget to catch any error
-                     // that could have happened anywhere in the
-                     // code blocks above.
-                     //
-                     alert ("Ooops: " + error);
-                  });*/
+                //db.favorites.add({ businessID: id, name: business.name, rating: business.rating, phone: business.display_phone, cost: business.price, reviews: business.review_count, address1: business.location.display_address[0], address2: business.location.display_address[1], businessInfo: business});
             }
             $('#favoriteButton').on('click', function(event) {
                 $(".page2").hide();
@@ -656,28 +657,31 @@
                 $(".favoriteListBox").show();
                 
                 
-                db.favorites.each(favorite => addToFavoriteListing(favorite.businessID, favorite.name, favorite.rating, favorite.phone, favorite.cost, favorite.reviews, favorite.address1, favorite.address2));
+                //db.favorites.each(favorite => addToFavoriteListing(favorite.businessID, favorite.name, favorite.rating, favorite.phone, favorite.cost, favorite.reviews, favorite.address1, favorite.address2));
+                db.favorites.each(favorite => addToFavoriteListing(favorite.business));
+                //db.favorites.each();
                 
             });
-            function addToFavoriteListing(businessID, name, rating, phone, cost, reviews, address1, address2){
+            function addToFavoriteListing(business){
                 var clonedListing = $("#favoriteListing").clone();
                 //console.log(business.name); mdc-list-item__secondary-text
-                $(clonedListing).find("span.mdc-list-item__text").text(name + " (" + rating + ")");
-                $(clonedListing).find("span.mdc-list-item__text").append('<span class="mdc-list-item__secondary-text">' + address1 + "<br/> " + address2 + '</span>');
+                $(clonedListing).find("span.mdc-list-item__text").text(business.name + " (" + business.rating + ")");
+                $(clonedListing).find("span.mdc-list-item__text").append('<span class="mdc-list-item__secondary-text">' + business.location.display_address[0] + "<br/> " + business.location.display_address[1] + '</span>');
                 $(clonedListing).find("span.mdc-list-item__graphic").text("");
             
                 //$(clonedListing).find("span.mdc-list-item__graphic").append("<img src='" + business.image_url + "' alt= ' Labukas ' height='42' width='42' />");
                 
-                //$(clonedListing).find("#infoButton").attr("id", "info"+business.id);
-                //$(clonedListing).find("#addFavButton").attr("id", "addFav"+business.id);
+                $(clonedListing).attr("id", "favoriteListing"+business.id);
+                $(clonedListing).find("#infoButton").attr("id", "favInfo"+business.id);
+                $(clonedListing).find("#addFavButton").attr("id", "removeFav"+business.id);
                 
                 
                 $(".favoriteListBox").append(clonedListing);
                 $(clonedListing).show();
                 //console.log("businessid: " + business.id);
                 //console.log(showInfo(business.id));
-                //$("#info" + business.id).off('click').click(function(){showInfo(this.id)});
-                //$("#addFav" + business.id).off('click').click(function(){addToFavorites(this.id)});
+                $("#favInfo" + business.id).off('click').click(function(){showInfo(this.id)});
+                $("#removeFav" + business.id).off('click').click(function(){addToFavorites(this.id)});
                 //$('#infoButton').off('click').click(function(evt){showInfo(i)});
             }
             $('.searchRestaurantButton').on('click', function(event) {
@@ -1328,7 +1332,8 @@
       //
       var db = new Dexie("foodApp_database");
       db.version(1).stores({
-          favorites: 'businessID, name, rating, phone, cost, reviews, address1, address2'
+          //favorites: 'businessID, name, rating, phone, cost, reviews, address1, address2, business'
+          favorites: 'businessID, business'
       });
       /*
       // Put some data into it
