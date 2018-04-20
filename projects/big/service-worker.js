@@ -1,5 +1,5 @@
-var cacheName = 'weatherPWA-step-6-1';
-var dataCacheName = 'weatherData-v1';
+var cacheName = 'foodPWA';
+var dataCacheName = 'businessData-v1';
 /*var filesToCache = [
   'https://preview.c9users.io/mvaras2/it202spr2018/projects/p4/',
   'https://preview.c9users.io/mvaras2/it202spr2018/projects/p4/index.html',
@@ -23,8 +23,12 @@ var dataCacheName = 'weatherData-v1';
 var filesToCache = [
   '',
   'index.html',
-  'scripts/app.js',
-  'styles/inline.css',
+  'background.jpg',
+  'material-components-web.js',
+  'material-components-web.css',
+  'package.json'
+//  'scripts/app.js'
+/*  'styles/inline.css',
   'images/clear.png',
   'images/cloudy-scattered-showers.png',
   'images/cloudy.png',
@@ -37,7 +41,7 @@ var filesToCache = [
   'images/sleet.png',
   'images/snow.png',
   'images/thunderstorm.png',
-  'images/wind.png'
+  'images/wind.png'*/
 ];
 
 self.addEventListener('install', function(e) {
