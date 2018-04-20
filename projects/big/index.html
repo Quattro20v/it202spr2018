@@ -487,6 +487,12 @@
         function geo_success(position) {
           userLatitude = position.coords.latitude;
           userLongitude = position.coords.longitude;
+          //mymap.center.lat = userLatitude;
+          //mymap.center.lng = userLongitude;
+         /* google.maps.Map(document.getElementById('map'), {
+              zoom: 10,
+              center: {lat: userLatitude, lng: userLongitude}
+            });*/
           console.log(position);
         }
         
@@ -495,12 +501,13 @@
         }
         
         var geo_options = {
-          enableHighAccuracy: false, 
+        //  enableHighAccuracy: false, 
           maximumAge        : 30000, 
           timeout           : 27000
         };
         
-        var wpid = navigator.geolocation.watchPosition(geo_success, geo_error, geo_options);
+        //var wpid = navigator.geolocation.watchPosition(geo_success, geo_error, geo_options);
+        var wpid = navigator.geolocation.getCurrentPosition(geo_success, geo_error, geo_options);
     
         var mymap;
         var markers = [];
@@ -522,6 +529,7 @@
         $("#map").hide();
         $("#backButton").hide();
         $("#favoriteListing").hide();
+        $(".page5").hide();
         $(document).ready(function(){
             $('.nextButton').on('click', function(event) {        
                 $(".page1").hide();
@@ -674,6 +682,7 @@
                 $(clonedListing).attr("id", "favoriteListing"+business.id);
                 $(clonedListing).find("#infoButton").attr("id", "favInfo"+business.id);
                 $(clonedListing).find("#addFavButton").attr("id", "removeFav"+business.id);
+                $(clonedListing).find("#navButton").attr("id", "favNav"+business.id);
     
                 
                 
@@ -683,7 +692,7 @@
                 //console.log(showInfo(business.id));
                 $("#favInfo" + business.id).off('click').click(function(){showInfo(this.id)});
                 $("#removeFav" + business.id).off('click').click(function(){addToFavorites(this.id)});
-                //$('#infoButton').off('click').click(function(evt){showInfo(i)});
+                $("#favNav" + business.id).off('click').click(function(evt){navigate(this.id)});
             }
             function navigate(buttonID){
                 $(".page2").hide();
@@ -695,6 +704,92 @@
                 $(".page5").show();
                 $("#map").show();
                 console.log(buttonID);
+                var business;
+                //var splitString = buttonID.split("/");
+                //var type = splitString[0];
+                var type = buttonID.substring(0,3);
+                //var id = splitString[1];
+                var id = buttonID.substring(3);
+                if(type == "nav"){
+                    for(var i = 0; i  < restaurantListings.businesses.length; i++ ){
+                        if(id == restaurantListings.businesses[i].id) { 
+                            business = restaurantListings.businesses[i]; 
+                            break;
+                        }
+                    }
+                    var contentString = '<div id="content">'+
+                        '<div id="siteNotice">'+
+                        '</div>'+
+                        business.name + '</h1>'+
+                        '<div id="bodyContent">'+
+                        '<p>Phone: ' +  business.display_phone +
+                        '<br />Price: ' + business.price +
+                        '<br />Address: ' + business.location.display_address[0] + " " + business.location.display_address[1] +
+                        '</p>'+
+                        '</div>'+
+                        '</div>';
+                    var infowindow = new google.maps.InfoWindow({
+                      content: contentString
+                    });
+                    //var image = 'map_icons/charter.png';
+                    var mymarker = new google.maps.Marker({
+                      position: {lat: parseFloat(business.coordinates.latitude), lng: parseFloat(business.coordinates.longitude)},
+                      map: mymap,
+                      title: business.name
+                //      icon: image
+                    });
+                    mymap.setCenter(mymarker.getPosition());
+                    markers.push(mymarker);
+                    
+                    //console.log(v);
+                        mymarker.addListener('click', function() {
+                        infowindow.open(mymap, mymarker);
+                    });
+                }
+                else {
+                    id = buttonID.substring(6);
+                    console.log(buttonID);
+                    console.log(id);
+                    db.favorites.where("businessID").equals(id).each(function (restaurant) {
+                        //console.log("Found: " + friend.name + ". Phone: " + friend.phoneNumber);
+                        business = restaurant.business;
+                        console.log(business);
+                        console.log(business);
+                        var contentString = '<div id="content">'+
+                            '<div id="siteNotice">'+
+                            '</div>'+
+                            business.name + '</h1>'+
+                            '<div id="bodyContent">'+
+                            '<p>Phone: ' +  business.display_phone +
+                            '<br />Price: ' + business.price +
+                            '<br />Address: ' + business.location.display_address[0] + " " + business.location.display_address[1] +
+                            '</p>'+
+                            '</div>'+
+                            '</div>';
+                        var infowindow = new google.maps.InfoWindow({
+                          content: contentString
+                        });
+                        //mymap.setCenter(business.coordinates.latitude, business.coordinates.longitude);
+                        //var image = 'map_icons/charter.png';
+                        var mymarker = new google.maps.Marker({
+                          position: {lat: parseFloat(business.coordinates.latitude), lng: parseFloat(business.coordinates.longitude)},
+                          map: mymap,
+                          title: business.name
+                    //      icon: image
+                        });
+                        mymap.setCenter(mymarker.getPosition());
+                        markers.push(mymarker);
+                        
+                        //console.log(v);
+                            mymarker.addListener('click', function() {
+                            infowindow.open(mymap, mymarker);
+                        });
+                    });
+                }
+                
+                
+                
+                
                 /*var business;
                 //var splitString = buttonID.split("/");
                 //var type = splitString[0];
@@ -736,6 +831,7 @@
                 
                 
                  $.get("https://script.google.com/macros/s/AKfycbzGKldJBo-3Pe_8dI8BnQzn0l7bYHVrlZQELC8iTcOMNHXd5Qo/exec?&latitude=41.866127&longitude=-87.652351&categories=americannew")
+                 //$.get("https://script.google.com/macros/s/AKfycbzGKldJBo-3Pe_8dI8BnQzn0l7bYHVrlZQELC8iTcOMNHXd5Qo/exec?&latitude=" + userLatitude + "&longitude=" + userLongitude + "&categories=americannew")
                     .done(function(response) {
                         console.log(response);
                         console.log(response.businesses.length);
