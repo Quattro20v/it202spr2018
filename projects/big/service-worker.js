@@ -37,7 +37,10 @@ self.addEventListener('activate', function(e) {
 
 self.addEventListener('fetch', function(e) {
   console.log('[Service Worker] Fetch', e.request.url);
-  var dataUrl = 'https://query.yahooapis.com/v1/public/yql';
+  //var dataUrl = 'https://query.yahooapis.com/v1/public/yql';
+  var dataUrl = 'https://script.google.com/macros/s/';
+  console.log(e.request.url.indexOf(dataUrl));
+  console.log("HAHAHAHAHAHAHAHAA");
   if (e.request.url.indexOf(dataUrl) > -1) {
     /*
      * When the request URL contains dataUrl, the app is asking for fresh
@@ -46,14 +49,14 @@ self.addEventListener('fetch', function(e) {
      * network" strategy:
      * https://jakearchibald.com/2014/offline-cookbook/#cache-then-network
      */
-    e.respondWith(
+    /*e.respondWith(
       caches.open(dataCacheName).then(function(cache) {
         return fetch(e.request).then(function(response){
           cache.put(e.request.url, response.clone());
           return response;
         });
       })
-    );
+    );*/
   } else {
     /*
      * The app is asking for app shell files. In this scenario the app uses the

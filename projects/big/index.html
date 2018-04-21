@@ -288,7 +288,7 @@
             </h2>
             <p class="mdc-typography--body1">Please select the types that you want to be searched for in your area!
             </p>
-            <select id="dropDown">
+            <!--<select id="dropDown">
               <option value="newamerican">American</option>
               <option value="brazilian">Brazilian</option>
               <option value="burgers">Burgers</option>
@@ -297,7 +297,22 @@
               <option value="food_court">Food Court</option>
               <option value="italian">Italian</option>
               <option value="mexican">Mexican</option>
-            </select>
+            </select>-->
+            <div id="js-pre-selected" class="mdc-select">
+                <select id="dropDown" class="mdc-select__native-control">
+                  <option value="newamerican" selected="">American</option>
+                  <option value="brazilian">Brazilian</option>
+                  <option value="burgers">Burgers</option>
+                  <option value="chinese">Chinese</option>
+                  <option value="hotdogs">Fast Food</option>
+                  <option value="food_court">Food Court</option>
+                  <option value="italian">Italian</option>
+                  <option value="mexican">Mexican</option>
+                </select>
+                <div class="mdc-select__label mdc-select__label--float-above">Restaurant Type</div>
+                <div class="mdc-select__bottom-line"></div>
+              </div>
+            
 
             <button class="searchRestaurantButton mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
                   Search
@@ -620,23 +635,15 @@
                         var text = firstResult.text
                   
                        // $('#output').append('The temperature is ' + temp + ' in ' + location + '. Forecast calls for '+text);
-          
-                    })
-                    
-                    console.log(temp);
-                    
-                    
-                    
-                    $("#moreInfoDialog").find("#my-mdc-dialog-label").html("<h2 id='my-mdc-dialog-label' class='mdc-dialog__header__title'>" + business.name + "</h2>");
-                    $("#moreInfoDialog").find("#my-mdc-dialog-description").text("");
-                    $("#moreInfoDialog").find("#my-mdc-dialog-description").append(
-                        "Rating: " + business.rating + "/5 </br>"
-                        + "Phone Number: " + business.display_phone + "</br>"
-                        + "Cost: " + business.price + "</br>"
-                        + "Reviews: " + business.review_count + "</br>"
-                        + "Temperature: " + temp);
-                    
-                    
+                        $("#moreInfoDialog").find("#my-mdc-dialog-label").html("<h2 id='my-mdc-dialog-label' class='mdc-dialog__header__title'>" + business.name + "</h2>");
+                        $("#moreInfoDialog").find("#my-mdc-dialog-description").text("");
+                        $("#moreInfoDialog").find("#my-mdc-dialog-description").append(
+                            "Rating: " + business.rating + "/5 </br>"
+                            + "Phone Number: " + business.display_phone + "</br>"
+                            + "Cost: " + business.price + "</br>"
+                            + "Reviews: " + business.review_count + "</br>"
+                            + "Temperature at location: " + temp + " F");
+                        })
                     
                     dialog.show();
                 } else {
