@@ -1,24 +1,5 @@
 var cacheName = 'foodPWA';
 var dataCacheName = 'businessData-v1';
-/*var filesToCache = [
-  'https://preview.c9users.io/mvaras2/it202spr2018/projects/p4/',
-  'https://preview.c9users.io/mvaras2/it202spr2018/projects/p4/index.html',
-  'https://preview.c9users.io/mvaras2/it202spr2018/projects/p4/scripts/app.js',
-  'https://preview.c9users.io/mvaras2/it202spr2018/projects/p4/styles/inline.css',
-  'https://preview.c9users.io/mvaras2/it202spr2018/projects/p4/images/clear.png',
-  'https://preview.c9users.io/mvaras2/it202spr2018/projects/p4/images/cloudy-scattered-showers.png',
-  'https://preview.c9users.io/mvaras2/it202spr2018/projects/p4/images/cloudy.png',
-  'https://preview.c9users.io/mvaras2/it202spr2018/projects/p4/images/fog.png',
-  'https://preview.c9users.io/mvaras2/it202spr2018/projects/p4/images/ic_add_white_24px.svg',
-  'https://preview.c9users.io/mvaras2/it202spr2018/projects/p4/images/ic_refresh_white_24px.svg',
-  'https://preview.c9users.io/mvaras2/it202spr2018/projects/p4/images/partly-cloudy.png',
-  'https://preview.c9users.io/mvaras2/it202spr2018/projects/p4/images/rain.png',
-  'https://preview.c9users.io/mvaras2/it202spr2018/projects/p4/images/scattered-showers.png',
-  'https://preview.c9users.io/mvaras2/it202spr2018/projects/p4/images/sleet.png',
-  'https://preview.c9users.io/mvaras2/it202spr2018/projects/p4/images/snow.png',
-  'https://preview.c9users.io/mvaras2/it202spr2018/projects/p4/images/thunderstorm.png',
-  'https://preview.c9users.io/mvaras2/it202spr2018/projects/p4/images/wind.png'
-];*/
 
 var filesToCache = [
   '',
@@ -27,21 +8,6 @@ var filesToCache = [
   'material-components-web.js',
   'material-components-web.css',
   'package.json'
-//  'scripts/app.js'
-/*  'styles/inline.css',
-  'images/clear.png',
-  'images/cloudy-scattered-showers.png',
-  'images/cloudy.png',
-  'images/fog.png',
-  'images/ic_add_white_24px.svg',
-  'images/ic_refresh_white_24px.svg',
-  'images/partly-cloudy.png',
-  'images/rain.png',
-  'images/scattered-showers.png',
-  'images/sleet.png',
-  'images/snow.png',
-  'images/thunderstorm.png',
-  'images/wind.png'*/
 ];
 
 self.addEventListener('install', function(e) {
