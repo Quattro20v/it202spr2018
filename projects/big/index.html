@@ -990,7 +990,7 @@
                 
                  //$.get("https://script.google.com/macros/s/AKfycbzGKldJBo-3Pe_8dI8BnQzn0l7bYHVrlZQELC8iTcOMNHXd5Qo/exec?&latitude=41.866127&longitude=-87.652351&categories=americannew")
                  //$.get("https://script.google.com/macros/s/AKfycbzGKldJBo-3Pe_8dI8BnQzn0l7bYHVrlZQELC8iTcOMNHXd5Qo/exec?&latitude=" + userLatitude + "&longitude=" + userLongitude + "&categories=americannew")
-                $.get("https://script.google.com/macros/s/AKfycbzGKldJBo-3Pe_8dI8BnQzn0l7bYHVrlZQELC8iTcOMNHXd5Qo/exec?&latitude=41.866127&longitude=-87.652351&categories=" + $('#dropDown :selected').val())
+                $.get("https://script.google.com/macros/s/AKfycbzGKldJBo-3Pe_8dI8BnQzn0l7bYHVrlZQELC8iTcOMNHXd5Qo/exec?&latitude=" + userLatitude + "&longitude=" + userLongitude + "&categories=" + $('#dropDown :selected').val())
                     .done(function(response) {
                         console.log(response);
                         console.log(response.businesses.length);
