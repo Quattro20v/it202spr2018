@@ -67,23 +67,60 @@
         .informationBox > button {
             float: right;
             margin-right:15px;
-        }
-        .informationBox2 {
-           /* width: 450px;*/
-            width: 50%; 
-            height: 250px;
-            background-color:rgba(255,255,255,.6);
-            border-radius: 25px;
- /*           border:2px solid black;*/
-        
-            position: absolute;
-            top:0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-        
-            margin: auto;
-            box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        }@media (max-width: 480px) {
+              .informationBox2 {
+               /* width: 450px;*/
+                width: 90%; 
+                height: 250px;
+                background-color:rgba(255,255,255,.6);
+                border-radius: 25px;
+     /*           border:2px solid black;*/
+            
+                position: absolute;
+                top:0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            
+                margin: auto;
+                box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+            }
+        }@media (min-width: 480px) {
+              .informationBox2 {
+               /* width: 450px;*/
+                width: 60%; 
+                height: 250px;
+                background-color:rgba(255,255,255,.6);
+                border-radius: 25px;
+     /*           border:2px solid black;*/
+            
+                position: absolute;
+                top:0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            
+                margin: auto;
+                box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+            }
+        }@media (min-width: 1024px) {
+              .informationBox2 {
+               /* width: 450px;*/
+                width: 30%; 
+                height: 250px;
+                background-color:rgba(255,255,255,.6);
+                border-radius: 25px;
+     /*           border:2px solid black;*/
+            
+                position: absolute;
+                top:0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            
+                margin: auto;
+                box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+            }
         }
         .informationBox2 > h2 {
             text-align:center
@@ -98,25 +135,66 @@
         .informationBox2 > button {
             float: right;
             margin-right:15px;
-        }
-        .restaurantListBox {
-            width: 80%;
-            height: 90vh;
-            /*height: 250px;*/
-            margin-left: 50px;
-            margin-right: 50px;
-            background-color:rgba(255,255,255,.9);
-            border-radius: 25px;
- /*           border:2px solid black;*/
-        
-            position: absolute;
-            top:0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-        
-            margin: auto;
-            box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        }@media (max-width: 480px) {
+              .restaurantListBox {
+                width: 100%;
+                height: 90vh;
+                /*height: 250px;*/
+                margin-left: 50px;
+                margin-right: 50px;
+                background-color:rgba(255,255,255,.9);
+                border-radius: 25px;
+     /*           border:2px solid black;*/
+            
+                position: absolute;
+                top:0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            
+                margin: auto;
+                box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+            }
+        }@media (min-width: 480px) {
+              .restaurantListBox {
+                width: 80%;
+                height: 90vh;
+                /*height: 250px;*/
+                margin-left: 50px;
+                margin-right: 50px;
+                background-color:rgba(255,255,255,.9);
+                border-radius: 25px;
+     /*           border:2px solid black;*/
+            
+                position: absolute;
+                top:0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            
+                margin: auto;
+                box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+            }
+        }@media (min-width: 1024px) {
+              .restaurantListBox {
+                width: 80%;
+                height: 90vh;
+                /*height: 250px;*/
+                margin-left: 50px;
+                margin-right: 50px;
+                background-color:rgba(255,255,255,.9);
+                border-radius: 25px;
+     /*           border:2px solid black;*/
+            
+                position: absolute;
+                top:0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            
+                margin: auto;
+                box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+            }
         }
         .restaurantListBox > h2 {
             text-align:center
@@ -313,7 +391,6 @@
                 <div class="mdc-select__bottom-line"></div>
               </div>
             
-
             <button class="searchRestaurantButton mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
                   Search
             </button>
@@ -343,9 +420,9 @@
                     <button id="addFavButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
                          favorite
                     </button>
-                    <button id="infoButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                    <!--<button id="infoButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
                          info
-                    </button>
+                    </button>-->
                   </p>
                 </li>
             </ul>
@@ -375,9 +452,9 @@
                     <button id="addFavButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
                          favorite_border
                     </button>
-                    <button id="infoButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+<!--button id="infoButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
                          info
-                    </button>
+                    </button>-->
                   </p>
                 </li>
             </ul>
@@ -647,7 +724,7 @@
                     
                     dialog.show();
                 } else {
-                    id = buttonID.substring(7);
+                    id = buttonID.substring(15);
                     db.favorites.where("businessID").equals(id).each(function (restaurant) {
                         //console.log("Found: " + friend.name + ". Phone: " + friend.phoneNumber);
                         business = restaurant.business;
@@ -750,8 +827,9 @@
             
                 //$(clonedListing).find("span.mdc-list-item__graphic").append("<img src='" + business.image_url + "' alt= ' Labukas ' height='42' width='42' />");
                 
+                //$(clonedListing).attr("id", "favInfo"+business.id)
                 $(clonedListing).attr("id", "favoriteListing"+business.id);
-                $(clonedListing).find("#infoButton").attr("id", "favInfo"+business.id);
+                //$(clonedListing).find("#infoButton").attr("id", "favInfo"+business.id);
                 $(clonedListing).find("#addFavButton").attr("id", "removeFav"+business.id);
                 $(clonedListing).find("#navButton").attr("id", "favNav"+business.id);
     
@@ -762,7 +840,7 @@
                 favoriteCurrentListings.push(clonedListing);
                 //console.log("businessid: " + business.id);
                 //console.log(showInfo(business.id));
-                $("#favInfo" + business.id).off('click').click(function(){showInfo(this.id)});
+                $("#favoriteListing" + business.id).off('click').click(function(){showInfo(this.id)});
                 $("#removeFav" + business.id).off('click').click(function(){addToFavorites(this.id)});
                 $("#favNav" + business.id).off('click').click(function(evt){navigate(this.id)});
             }
@@ -935,6 +1013,7 @@
                         
                             $(clonedListing).find("span.mdc-list-item__graphic").append("<img src='" + business.image_url + "' alt= ' Labukas ' height='42' width='42' />");
                             
+                            $(clonedListing).attr("id", "info"+business.id);
                             $(clonedListing).find("#infoButton").attr("id", "info"+business.id);
                             $(clonedListing).find("#addFavButton").attr("id", "addFav"+business.id);
                             $(clonedListing).find("#navButton").attr("id", "nav"+business.id);
