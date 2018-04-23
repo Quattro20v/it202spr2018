@@ -64,6 +64,14 @@
             color : black;
             padding: 10px;
         }
+        .sectionList {
+            display: block;
+            height:100%;
+            width:100%;
+      /*      padding: 60px;
+            padding-left: 120px;*/
+            box-sizing:border-box;
+        }
         .informationBox > button {
             float: right;
             margin-right:15px;
@@ -352,16 +360,6 @@
             </h2>
             <p class="mdc-typography--body1">Please select the types that you want to be searched for in your area!
             </p>
-            <!--<select id="dropDown">
-              <option value="newamerican">American</option>
-              <option value="brazilian">Brazilian</option>
-              <option value="burgers">Burgers</option>
-              <option value="chinese">Chinese</option>
-              <option value="hotdogs">Fast Food</option>
-              <option value="food_court">Food Court</option>
-              <option value="italian">Italian</option>
-              <option value="mexican">Mexican</option>
-            </select>-->
             <div id="js-pre-selected" class="mdc-select">
                 <select id="dropDown" class="mdc-select__native-control">
                   <option value="newamerican" selected="">American</option>
@@ -394,14 +392,16 @@
                     <!--<i class="material-icons" aria-hidden="true">folder</i>-->
                         <img src="https://s3-media3.fl.yelpcdn.com/bphoto/_9zgtx1fuB-ml_zV7g9zOA/o.jpg" alt="Cheetah!" height="42" width="42"/>
                   </span>
-                  <span class="mdc-list-item__text">
-                    Photos
-                    <span class="mdc-list-item__secondary-text">Jan 9, 2014</span>
-                  </span>
+                  <section id="info" class="sectionList">
+                      <span class="mdc-list-item__text">
+                        Photos
+                        <span class="mdc-list-item__secondary-text">Jan 9, 2014</span>
+                      </span>
+                  </section>
                   <button id="navButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
                     navigation
                   </button>
-                         
+         
                   <p align="left">
                     <button id="addFavButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
                          favorite
@@ -426,10 +426,12 @@
                     <!--<i class="material-icons" aria-hidden="true">folder</i>-->
                         <img src="https://s3-media3.fl.yelpcdn.com/bphoto/_9zgtx1fuB-ml_zV7g9zOA/o.jpg" alt="Cheetah!" height="42" width="42"/>
                   </span>
-                  <span class="mdc-list-item__text">
-                    Photos
-                    <span class="mdc-list-item__secondary-text">Jan 9, 2014</span>
-                  </span>
+                  <section id="favInfo" class="sectionList">
+                      <span class="mdc-list-item__text">
+                        Photos
+                        <span class="mdc-list-item__secondary-text">Jan 9, 2014</span>
+                      </span>
+                  </section>
                   <button id="navButton" class=" material-icons mdc-button mdc-button--flat mdc-list-item__meta material-icons" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
                     navigation
                   </button>
@@ -598,8 +600,8 @@
                 
                     $(clonedListing).find("span.mdc-list-item__graphic").append("<img src='" + business.image_url + "' alt= ' Labukas ' height='42' width='42' />");
                     
-                    $(clonedListing).attr("id", "info"+business.id);
-                    $(clonedListing).find("#infoButton").attr("id", "info"+business.id);
+                    //$(clonedListing).attr("id", "info"+business.id);
+                    $(clonedListing).find("#info").attr("id", "info"+business.id);
                     $(clonedListing).find("#addFavButton").attr("id", "addFav"+business.id);
                     $(clonedListing).find("#navButton").attr("id", "nav"+business.id);
                     
@@ -746,11 +748,11 @@
                             + "Cost: " + business.price + "</br>"
                             + "Reviews: " + business.review_count + "</br>"
                             + "Temperature at location: " + temp + " F");
-                        })
+                        });
                     
                     dialog.show();
                 } else {
-                    id = buttonID.substring(15);
+                    id = buttonID.substring(7);
                     db.favorites.where("businessID").equals(id).each(function (restaurant) {
                         //console.log("Found: " + friend.name + ". Phone: " + friend.phoneNumber);
                         business = restaurant.business;
@@ -828,7 +830,7 @@
             
 
                 $(clonedListing).attr("id", "favoriteListing"+business.id);
-                //$(clonedListing).find("#infoButton").attr("id", "favInfo"+business.id);
+                $(clonedListing).find("#favInfo").attr("id", "favInfo"+business.id);
                 $(clonedListing).find("#addFavButton").attr("id", "removeFav"+business.id);
                 $(clonedListing).find("#navButton").attr("id", "favNav"+business.id);
     
@@ -839,7 +841,7 @@
                 favoriteCurrentListings.push(clonedListing);
                 //console.log("businessid: " + business.id);
                 //console.log(showInfo(business.id));
-                $("#favoriteListing" + business.id).off('click').click(function(){showInfo(this.id)});
+                $("#favInfo" + business.id).off('click').click(function(){showInfo(this.id)});
                 $("#removeFav" + business.id).off('click').click(function(){addToFavorites(this.id)});
                 $("#favNav" + business.id).off('click').click(function(evt){navigate(this.id)});
             }
