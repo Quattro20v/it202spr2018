@@ -31,6 +31,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
     <script>
+    var mymap;
+      function initMap() {
+       // var uluru = {lat: -41.8782, lng: -87.6290};
+          mymap = new google.maps.Map(document.getElementById('map'), {
+              zoom: 4,
+              center: {lat: 41.866127, lng: -87.652351}
+            });
+      }
+    
       $("#clinicCard").hide();
       $( "#searchButton" ).click(function() {
         $.get("https://data.cityofchicago.org/resource/t57k-za2y.json")
@@ -39,7 +48,6 @@
               zoom: 4,
               center: {lat: parseFloat(response[0].latitude), lng: parseFloat(response[0].longtitude)}
             });*/
-            
             console.log(response);
             
             $.each(response, function(i, v) {
@@ -52,6 +60,37 @@
               $(clonedCard).append("<small id='smallText' class='text-muted'>" + response[i].hours_of_operation + "</small>")
               $(clonedCard).show();
               $( "#listings" ).append(clonedCard);
+              
+              var contentString = '<div id="content">'+
+                    '<div id="siteNotice">'+
+                    '</div>'+
+                    '<h1>' + v.site_name + '</h1>'+
+                    '<div id="bodyContent">'+
+                    '<p>' + response[i].street_address +  '</p>'+
+                    '<p>' + response[i].city +", " + response[i].state + " " + response[i].zip +  '</p>'+
+                    '<p>' + response[i].phone_1 +  '</p>'+
+                    '<p>' + response[i].hours_of_operation +  '</p>'+
+                    '</div>'+
+                    '</div>';
+        
+                var infowindow = new google.maps.InfoWindow({
+                  content: contentString
+                });
+        
+                var mymarker = new google.maps.Marker({
+                  position: {lat: parseFloat(v.latitude), lng: parseFloat(v.longitude)},
+                  map: mymap,
+                  title: v.site_name
+                });
+                
+                
+                console.log(v);
+                mymarker.addListener('click', function() {
+                  infowindow.open(mymap, mymarker);
+                });
+              
+              
+              
               
               /* var contentString = '<div id="content">'+
                     '<div id="siteNotice">'+
@@ -98,74 +137,6 @@
         
       });
     
-    
-    
-      function initMap() {
-       // var uluru = {lat: -41.8782, lng: -87.6290};
-        var mymap = new google.maps.Map(document.getElementById('map'), {
-              zoom: 4,
-              center: {lat: 41.866127, lng: -87.652351}
-            });
-        
-        
-        $.get("https://data.cityofchicago.org/resource/cwig-ma7x.json?$limit=5")//problem..
-          .done(function(response) {
-            
-        /*    var mymap = new google.maps.Map(document.getElementById('map'), {
-              zoom: 4,
-              center: {lat: parseFloat(response[0].latitude), lng: parseFloat(response[0].longtitude)}
-            });*/
-            
-            console.log(response);
-            
-            $.each(response, function(i, v) {
-              
-               var contentString = '<div id="content">'+
-                    '<div id="siteNotice">'+
-                    '</div>'+
-                    v.dba_name + '</h1>'+
-                    '<div id="bodyContent">'+
-                    '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-                    'sandstone rock formation in the southern part of the '+
-                    'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-                    'south west of the nearest large town, Alice Springs; 450&#160;km '+
-                    '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-                    'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-                    'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-                    'Aboriginal people of the area. It has many springs, waterholes, '+
-                    'rock caves and ancient paintings. Uluru is listed as a World '+
-                    'Heritage Site.</p>'+
-                    '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-                    'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-                    '(last visited June 22, 2009).</p>'+
-                    '</div>'+
-                    '</div>';
-        
-                var infowindow = new google.maps.InfoWindow({
-                  content: contentString
-                });
-        
-                var mymarker = new google.maps.Marker({
-                  position: {lat: parseFloat(v.latitude), lng: parseFloat(v.longtitude)},
-                  map: mymap,
-                  title: v.dba_name
-                });
-                
-                
-                console.log(v);
-                mymarker.addListener('click', function() {
-                  infowindow.open(mymap, mymarker);
-                });
-              
-            });
-            
-            
-          });
-    
-        
-        
-        
-      }
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3nBtj6l277a5DtzpcTHIMpBMdCPVxNL0&callback=initMap">
