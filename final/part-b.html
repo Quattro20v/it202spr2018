@@ -7,22 +7,34 @@
         width: 100%;
        }
     </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
   <body>
     <h3>My Google Maps Demo</h3>
     <button type="search" id="searchButton">Search</button>
     <div id="map"></div>
+    <div class="list-group" id="listings">
+      <a href="#" id="clinicCard" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 id="heading" class="mb-1">List group item heading</h5>
+          <!--<small class="text-muted">3 days ago</small>-->
+        </div>
+      </a>
+    </div>
+    
     
     <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
     <script>
+      $("#clinicCard").hide();
       $( "#searchButton" ).click(function() {
-        $.get("https://data.cityofchicago.org/resource/t57k-za2y.json")//problem..
+        $.get("https://data.cityofchicago.org/resource/t57k-za2y.json")
           .done(function(response) {
-            
         /*    var mymap = new google.maps.Map(document.getElementById('map'), {
               zoom: 4,
               center: {lat: parseFloat(response[0].latitude), lng: parseFloat(response[0].longtitude)}
@@ -31,6 +43,15 @@
             console.log(response);
             
             $.each(response, function(i, v) {
+              
+              var clonedCard= $("#clinicCard").clone();
+              $(clonedCard).find("#heading").text(" " + response[i].site_name + " ");
+              $(clonedCard).append("<p class='mb-1'>" + response[i].street_address + "</p>")
+              $(clonedCard).append("<p class='mb-1'>" + response[i].city +", " + response[i].state + " " + response[i].zip + "</p>")
+              $(clonedCard).append("<p class='mb-1'>" + response[i].phone_1 + "</p>")
+              $(clonedCard).append("<small id='smallText' class='text-muted'>" + response[i].hours_of_operation + "</small>")
+              $(clonedCard).show();
+              $( "#listings" ).append(clonedCard);
               
               /* var contentString = '<div id="content">'+
                     '<div id="siteNotice">'+
